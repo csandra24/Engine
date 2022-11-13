@@ -22,8 +22,8 @@ enum update_status
 #define RADTODEG 1.0f / DEGTORAD
 
 // Configuration -----------
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1366
+#define SCREEN_HEIGHT 768
 #define FULLSCREEN false
 #define VSYNC true
 #define TITLE "Super Awesome Engine"

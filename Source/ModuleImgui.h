@@ -16,13 +16,15 @@ public:
 
 	bool Init();
 	void Start();
+	update_status PreUpdate() override;
 	update_status Update();
-	update_status PreUpdate();
 	update_status PostUpdate();
 	bool CleanUp();
 
+
 private:
 	const Uint8* keyboard = NULL;
+
 };
 
 #endif
