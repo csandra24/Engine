@@ -9,6 +9,7 @@
 #include "./lib/imgui-docking/imgui_impl_opengl3.h"
 #include "./lib/glew-2.1.0/include/GL/glew.h"
 
+#include <iostream>
 
 ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.05f, 1.00f);
 
@@ -24,15 +25,15 @@ ModuleImgui::~ModuleImgui()
 // Called before render is available
 bool ModuleImgui::Init()
 {
+	AVISO("Creating context Imgui");
 
 	ImGui::CreateContext();
 
 	ImGuiIO& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;  // Enable Docking
-	/*io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;     // Enable Multi-Viewport
-		
+	//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;     // Enable Multi-Viewport
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls  */   
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls  
 
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer->context);
 	ImGui_ImplOpenGL3_Init();
@@ -47,25 +48,33 @@ void ModuleImgui::Start()
 // Called every draw update
 update_status ModuleImgui::PreUpdate()
 {
+	AVISO("Creating frame");
+
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
+
+	MainMenu();
 
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleImgui::Update()
 {
-
 	ImGui::Render();
-
-	ImGuiIO& io = ImGui::GetIO();
-
-	glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-	glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
-	glClear(GL_COLOR_BUFFER_BIT);
-
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	ImGui::UpdatePlatformWindows();
+	ImGui::RenderPlatformWindowsDefault();
+	SDL_GL_MakeCurrent(App->window->window, App->renderer->context);
+
+	//ImGuiIO& io = ImGui::GetIO();
+
+	/*glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
+	glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
+	glClear(GL_COLOR_BUFFER_BIT);*/
+
+	if (exit_app)
+		return UPDATE_STOP;
 
 
 	return UPDATE_CONTINUE;
@@ -73,8 +82,12 @@ update_status ModuleImgui::Update()
 
 update_status ModuleImgui::PostUpdate()
 {
-	SDL_Event event;
-	ImGui_ImplSDL2_ProcessEvent(&event);
+	
+
+	
+
+	/*SDL_Event event;
+	ImGui_ImplSDL2_ProcessEvent(&event);*/
 	return UPDATE_CONTINUE;
 }
 
@@ -85,8 +98,42 @@ bool ModuleImgui::CleanUp()
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 
-	SDL_GL_DeleteContext(App->renderer->context);
+	/*SDL_GL_DeleteContext(App->renderer->context);
 	SDL_DestroyWindow(App->window->window);
-	SDL_Quit();
+	SDL_Quit();*/
 	return true;
+}
+
+void ModuleImgui::MainMenu() {
+	// Main Menu
+	if (ImGui::BeginMainMenuBar()) {
+		if (ImGui::BeginMenu("Help")) 
+		{
+			if (ImGui::MenuItem("Gui Demo"))
+
+
+			if (ImGui::MenuItem("Documentation"))
+				App->RequestBrowser("");
+
+			if (ImGui::MenuItem("Download latest"))
+				App->RequestBrowser("");
+
+			if (ImGui::MenuItem("Report a bug"))
+				App->RequestBrowser("");
+
+			if (ImGui::MenuItem("About"))
+				App->RequestBrowser("");
+
+			ImGui::EndMenu();
+		}
+
+		if (ImGui::BeginMenu("Options")) {
+			if (ImGui::MenuItem("Exit"))
+				exit_app = true;
+			ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen);
+			ImGui::EndMenu();
+		}
+		
+		ImGui::EndMainMenuBar();
+	}
 }

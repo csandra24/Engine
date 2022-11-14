@@ -19,12 +19,17 @@ public:
 	update_status PreUpdate() override;
 	update_status Update();
 	update_status PostUpdate();
-	bool CleanUp();
+	bool CleanUp();	
 
 
 private:
 	const Uint8* keyboard = NULL;
 
+	void MainMenu();
+	
+	bool exit_app = false;
+	bool opt_fullscreen = true;
+	
 };
 
 #endif

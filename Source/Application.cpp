@@ -65,3 +65,8 @@ bool Application::CleanUp()
 
 	return ret;
 }
+
+void Application::RequestBrowser(const char* url) const
+{
+	ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
+}
