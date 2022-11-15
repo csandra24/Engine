@@ -83,11 +83,6 @@ update_status ModuleImgui::Update()
 update_status ModuleImgui::PostUpdate()
 {
 	
-
-	
-
-	/*SDL_Event event;
-	ImGui_ImplSDL2_ProcessEvent(&event);*/
 	return UPDATE_CONTINUE;
 }
 

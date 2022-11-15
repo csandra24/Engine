@@ -2,7 +2,11 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleImgui.h"
 #include "./lib/SDL/include/SDL.h"
+#include "./lib/imgui-docking/imgui.h"
+#include "./lib/imgui-docking/imgui_impl_sdl.h"
+#include "./lib/imgui-docking/imgui_impl_opengl3.h"
 
 ModuleInput::ModuleInput()
 {}
@@ -44,6 +48,9 @@ update_status ModuleInput::Update()
                 break;
         }
     }
+
+    
+    ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
 
     keyboard = SDL_GetKeyboardState(NULL);
 
