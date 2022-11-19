@@ -14,11 +14,19 @@
 ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.05f, 1.00f);
 
 ModuleImgui::ModuleImgui()
-{}
+{
+	windows.push_back(console = new WConsole());
+}
 
 // Destructor
 ModuleImgui::~ModuleImgui()
-{}
+{
+	for (auto& Window : windows) {
+		delete Window;
+		Window = nullptr;
+	}
+	windows.clear();
+}
 
 
 
@@ -102,22 +110,29 @@ bool ModuleImgui::CleanUp()
 void ModuleImgui::MainMenu() {
 	// Main Menu
 	if (ImGui::BeginMainMenuBar()) {
-		if (ImGui::BeginMenu("Help")) 
+		if (ImGui::BeginMenu("Help"))
 		{
-			if (ImGui::MenuItem("Gui Demo"))
-
 
 			if (ImGui::MenuItem("Documentation"))
-				App->RequestBrowser("");
+				App->RequestBrowser("https://github.com/csandra24/Engine");
 
 			if (ImGui::MenuItem("Download latest"))
-				App->RequestBrowser("");
+				App->RequestBrowser("https://github.com/csandra24/Engine");
 
 			if (ImGui::MenuItem("Report a bug"))
-				App->RequestBrowser("");
+				App->RequestBrowser("https://github.com/csandra24/Engine");
 
 			if (ImGui::MenuItem("About"))
-				App->RequestBrowser("");
+				App->RequestBrowser("https://github.com/csandra24/Engine");
+
+			ImGui::EndMenu();
+		}
+
+		if (ImGui::BeginMenu("Windows")) {
+			// ir poniendo las ventanas que vaya creando
+			if (ImGui::MenuItem("Console", NULL, console->IsEnabled())) {
+				console->ToggleEnabled();
+			}
 
 			ImGui::EndMenu();
 		}
@@ -125,7 +140,6 @@ void ModuleImgui::MainMenu() {
 		if (ImGui::BeginMenu("Options")) {
 			if (ImGui::MenuItem("Exit"))
 				exit_app = true;
-			ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen);
 			ImGui::EndMenu();
 		}
 		

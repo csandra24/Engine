@@ -4,8 +4,13 @@
 
 #include "Module.h"
 #include "Globals.h"
+#include "./Windows/Console.h"
+#include "./Windows/Window.h"
 
 typedef unsigned __int8 Uint8;
+
+class Window;
+class WConsole;
 
 class ModuleImgui : public Module
 {
@@ -21,14 +26,18 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();	
 
+	//windows
+	WConsole* console = nullptr;
 
 private:
-	const Uint8* keyboard = NULL;
 
+	const Uint8* keyboard = NULL;
 	void MainMenu();
-	
 	bool exit_app = false;
-	bool opt_fullscreen = true;
+
+	std::list<Window*> windows;
+
+
 	
 };
 

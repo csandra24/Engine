@@ -202,6 +202,8 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="ModulRenderExercise.cpp" />
+    <ClCompile Include="Windows\Console.cpp" />
+    <ClCompile Include="Windows\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -391,6 +393,8 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="ModulRenderExercise.h" />
+    <ClInclude Include="Windows\Console.h" />
+    <ClInclude Include="Windows\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\glew-2.1.0\doc\advanced.html" />
