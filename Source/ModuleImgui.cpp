@@ -129,10 +129,22 @@ void ModuleImgui::MainMenu() {
 		}
 
 		if (ImGui::BeginMenu("Windows")) {
-			// ir poniendo las ventanas que vaya creando
+			
 			if (ImGui::MenuItem("Console", NULL, console->IsEnabled())) {
 				console->ToggleEnabled();
 			}
+
+			/*if (ImGui::MenuItem("FPS Graph", NULL, )) {
+
+			}
+
+			if (ImGui::MenuItem("Window Options", NULL, )) {
+
+			}
+
+			if (ImGui::MenuItem("Hardware Detection", NULL, )) {
+
+			}*/
 
 			ImGui::EndMenu();
 		}
