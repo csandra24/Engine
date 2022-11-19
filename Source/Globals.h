@@ -6,9 +6,9 @@
 #include <windows.h>
 #include <stdio.h>
 
-#define AVISO(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
+#define AVISO(format, ...) Log(__FILE__, __LINE__, format, __VA_ARGS__);
 
-void log(const char file[], int line, const char* format, ...);
+void Log(const char file[], int line, const char* format, ...);
 
 enum update_status
 {
@@ -18,6 +18,7 @@ enum update_status
 };
 
 //Constants................
+#define MAX_BUF_SIZE 4096
 #define DEGTORAD 0.01745329251f
 #define RADTODEG 1.0f / DEGTORAD
 

@@ -1,5 +1,15 @@
 #include "Menu.h"
 
-Menu::Menu() { }
+Menu::Menu(char* name) : name(name) {}
 
-Menu::~Menu() { }
+Menu::~Menu() {}
+
+void Menu::OnOff()
+{
+	enabled = !enabled;
+}
+
+bool Menu::IsEnabled() const
+{
+	return enabled;
+}

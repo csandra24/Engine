@@ -9,23 +9,26 @@
 #include "./lib/imgui-docking/imgui_impl_opengl3.h"
 #include "./lib/glew-2.1.0/include/GL/glew.h"
 
+#include "./Windows/Menu.h"
+#include "./Windows/MenuConsole.h"
+
 #include <iostream>
+using namespace std;
 
 ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.05f, 1.00f);
 
-ModuleImgui::ModuleImgui()
+ModuleImgui::ModuleImgui(bool start_enabled) : Module(start_enabled)
 {
-	menus.push_back(console = new WindowConsole());
+	//menus.push_back(console = new MenuConsole());
 }
 
 // Destructor
 ModuleImgui::~ModuleImgui()
 {
-	for (auto& Menu : menus) {
-		delete Menu;
-		Menu = nullptr;
+	for (list<Menu*>::iterator it = menus.begin(); it != menus.end(); ++it)
+	{
+		delete* it;
 	}
-	menus.clear();
 }
 
 
@@ -130,9 +133,7 @@ void ModuleImgui::MainMenu() {
 
 		if (ImGui::BeginMenu("Windows")) {
 			
-			if (ImGui::MenuItem("Console", NULL, console->IsEnabled())) {
-				console->ToggleEnabled();
-			}
+			if (ImGui::MenuItem("Console","")) { console->OnOff(); }
 
 			/*if (ImGui::MenuItem("FPS Graph", NULL, )) {
 
@@ -153,8 +154,15 @@ void ModuleImgui::MainMenu() {
 			if (ImGui::MenuItem("Exit"))
 				exit_app = true;
 			ImGui::EndMenu();
+			
 		}
 		
 		ImGui::EndMainMenuBar();
 	}
+}
+
+void ModuleImgui::LogConsole(const char* log) const
+{
+	if (console != nullptr)
+		console->AddLog(log);
 }

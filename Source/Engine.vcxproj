@@ -202,8 +202,8 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="ModulRenderExercise.cpp" />
-    <ClCompile Include="Windows\WindowConsole.cpp" />
     <ClCompile Include="Windows\Menu.cpp" />
+    <ClCompile Include="Windows\MenuConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -393,7 +393,7 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="ModulRenderExercise.h" />
-    <ClInclude Include="Windows\WindowConsole.h" />
+    <ClInclude Include="Windows\MenuConsole.h" />
     <ClInclude Include="Windows\Menu.h" />
   </ItemGroup>
   <ItemGroup>

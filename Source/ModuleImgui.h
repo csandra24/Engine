@@ -4,19 +4,19 @@
 
 #include "Module.h"
 #include "Globals.h"
-#include "./Windows/WindowConsole.h"
+#include "./Windows/MenuConsole.h"
 #include "./Windows/Menu.h"
 
 typedef unsigned __int8 Uint8;
 
 class Menu;
-class WindowConsole;
+class MenuConsole;
 
 class ModuleImgui : public Module
 {
 public:
 
-	ModuleImgui();
+	ModuleImgui(bool start_enabled = true);
 	~ModuleImgui();
 
 	bool Init();
@@ -26,8 +26,10 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();	
 
+	void LogConsole(const char* log) const;
+
 	//windows
-	WindowConsole* console = nullptr;
+	MenuConsole* console = nullptr;
 
 private:
 

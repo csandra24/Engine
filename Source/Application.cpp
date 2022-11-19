@@ -70,3 +70,9 @@ void Application::RequestBrowser(const char* url) const
 {
 	ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
 }
+
+void Application::LogGui(const char* log) const
+{
+	if (ImGui != nullptr)
+		ImGui->LogConsole(log);
+}

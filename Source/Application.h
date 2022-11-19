@@ -26,6 +26,7 @@ public:
 	bool CleanUp();
 
 	void RequestBrowser(const char* url) const;
+	void LogGui(const char* log) const;
 
 
 public:
