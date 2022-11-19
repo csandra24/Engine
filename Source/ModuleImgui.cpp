@@ -15,17 +15,17 @@ ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.05f, 1.00f);
 
 ModuleImgui::ModuleImgui()
 {
-	windows.push_back(console = new WConsole());
+	menus.push_back(console = new WindowConsole());
 }
 
 // Destructor
 ModuleImgui::~ModuleImgui()
 {
-	for (auto& Window : windows) {
-		delete Window;
-		Window = nullptr;
+	for (auto& Menu : menus) {
+		delete Menu;
+		Menu = nullptr;
 	}
-	windows.clear();
+	menus.clear();
 }
 
 

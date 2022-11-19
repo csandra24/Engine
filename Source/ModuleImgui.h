@@ -4,13 +4,13 @@
 
 #include "Module.h"
 #include "Globals.h"
-#include "./Windows/Console.h"
-#include "./Windows/Window.h"
+#include "./Windows/WindowConsole.h"
+#include "./Windows/Menu.h"
 
 typedef unsigned __int8 Uint8;
 
-class Window;
-class WConsole;
+class Menu;
+class WindowConsole;
 
 class ModuleImgui : public Module
 {
@@ -27,7 +27,7 @@ public:
 	bool CleanUp();	
 
 	//windows
-	WConsole* console = nullptr;
+	WindowConsole* console = nullptr;
 
 private:
 
@@ -35,7 +35,7 @@ private:
 	void MainMenu();
 	bool exit_app = false;
 
-	std::list<Window*> windows;
+	std::list<Menu*> menus;
 
 
 	

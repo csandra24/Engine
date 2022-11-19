@@ -1,17 +1,17 @@
-#include "Console.h"
+#include "WindowConsole.h"
 
-WConsole::WConsole() { }
+WindowConsole::WindowConsole() { }
 
-WConsole::~WConsole() {
+WindowConsole::~WindowConsole() {
 	Clear();
 }
 
-void WConsole::AddLog(const char* log) {
+void WindowConsole::AddLog(const char* log) {
 	buf.appendf(log);
 	scrollToBottom = true;
 }
 
-void WConsole::Draw() {
+void WindowConsole::Draw() {
 
 	ImGui::SetNextWindowSize(ImVec2(500, 400), ImGuiCond_FirstUseEver);
 	if (!ImGui::Begin("Log", &enabled)) {
