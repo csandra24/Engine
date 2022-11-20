@@ -3,6 +3,9 @@
 #include "Application.h"
 #include "ModuleImgui.h"
 
+
+using namespace std;
+
 void log(const char file[], int line, const char* format, ...)
 {
 	static char tmp_string[4096];
@@ -16,11 +19,7 @@ void log(const char file[], int line, const char* format, ...)
 	sprintf_s(tmp_string2, 4096, "\n%s(%d) : %s", file, line, tmp_string);
 	OutputDebugString(tmp_string2);
 
-	// Send the string to the console
-	if (App != nullptr)
-	{
-		sprintf_s(tmp_string2, MAX_BUF_SIZE, "%s\n", tmp_string);
-		App->LogGui(tmp_string2);
-	}
-
+	logs.append(tmp_string2);
 }
+
+std::string logs;

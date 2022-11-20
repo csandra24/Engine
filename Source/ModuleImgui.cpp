@@ -9,26 +9,18 @@
 #include "./lib/imgui-docking/imgui_impl_opengl3.h"
 #include "./lib/glew-2.1.0/include/GL/glew.h"
 
-#include "./Windows/Menu.h"
-#include "./Windows/MenuConsole.h"
-
 #include <iostream>
 using namespace std;
 
 ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.05f, 1.00f);
 
-ModuleImgui::ModuleImgui(bool start_enabled) : Module(start_enabled)
+ModuleImgui::ModuleImgui()
 {
-	//menus.push_back(console = new MenuConsole());
 }
 
 // Destructor
 ModuleImgui::~ModuleImgui()
 {
-	for (list<Menu*>::iterator it = menus.begin(); it != menus.end(); ++it)
-	{
-		delete* it;
-	}
 }
 
 
@@ -36,6 +28,7 @@ ModuleImgui::~ModuleImgui()
 // Called before render is available
 bool ModuleImgui::Init()
 {
+	
 	AVISO("Creating context Imgui");
 
 	ImGui::CreateContext();
@@ -59,7 +52,6 @@ void ModuleImgui::Start()
 // Called every draw update
 update_status ModuleImgui::PreUpdate()
 {
-	AVISO("Creating frame");
 
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
@@ -133,7 +125,7 @@ void ModuleImgui::MainMenu() {
 
 		if (ImGui::BeginMenu("Windows")) {
 			
-			if (ImGui::MenuItem("Console","")) { console->OnOff(); }
+			ImGui::MenuItem("Console", "", &consoleEnabled);
 
 			/*if (ImGui::MenuItem("FPS Graph", NULL, )) {
 
@@ -158,11 +150,21 @@ void ModuleImgui::MainMenu() {
 		}
 		
 		ImGui::EndMainMenuBar();
-	}
-}
 
-void ModuleImgui::LogConsole(const char* log) const
-{
-	if (console != nullptr)
-		console->AddLog(log);
+		if (consoleEnabled) {
+			if (ImGui::Begin("Console")) {
+				ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
+				ImGui::TextUnformatted(logs.c_str());
+				if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+				{
+					ImGui::SetScrollHereY(1.0f);
+				}
+				ImGui::EndChild();
+			}
+			if(!consoleEnabled) {
+				AVISO("Closing log console");
+			}
+			ImGui::End();
+		}
+	}
 }

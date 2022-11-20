@@ -1,14 +1,16 @@
 #ifndef __Globals_H__
 #define __Globals_H__
 
-
-
 #include <windows.h>
 #include <stdio.h>
 
-#define AVISO(format, ...) Log(__FILE__, __LINE__, format, __VA_ARGS__);
+#include <iostream>
 
-void Log(const char file[], int line, const char* format, ...);
+#define AVISO(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
+
+void log(const char file[], int line, const char* format, ...);
+
+extern std::string logs;
 
 enum update_status
 {
