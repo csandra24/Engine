@@ -101,6 +101,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.\lib\glfw\include\GLFW;.\lib\SDL\include;.\lib\glew-2.1.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;26495;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -410,10 +411,6 @@
     <None Include="lib\MathGeoLib_Source\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
     <None Include="lib\MathGeoLib_Source\Math\float2.inl" />
     <None Include="lib\MathGeoLib_Source\Math\Matrix.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Shaders\FragmentShader.txt" />
-    <Text Include="Shaders\VertexShader.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

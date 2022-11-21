@@ -24,15 +24,15 @@ bool ModuleProgram::Init()
 {
 	bool ret = true;
 
-	char* vertexShader = LoadShaderSource("VertexShader.txt");
-	char* fragmentShader = LoadShaderSource("FragmentShader.txt");
+	char* vertexShader = LoadShaderSource("VertexShader.glsl");
+	char* fragmentShader = LoadShaderSource("FragmentShader.glsl");
 
 	unsigned vrtx_compiled = CompileShader(GL_VERTEX_SHADER, vertexShader);
 	unsigned frg_compiled = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
 	glCompileShader(vrtx_compiled);
 	glCompileShader(frg_compiled);
 
-	LinkShader(vrtx_compiled, frg_compiled);
+	linkingProgram = LinkShader(vrtx_compiled, frg_compiled);
 
 	return ret;
 
@@ -76,7 +76,7 @@ unsigned ModuleProgram::CompileShader(unsigned type, const char* source)
 	string shaderSource;
 	unsigned shader_id = glCreateShader(type);
 
-	source = (const GLchar*)shaderSource.c_str();
+	//source = (const GLchar*)shaderSource.c_str();
 	glShaderSource(shader_id, 1, &source, 0);
 
 	glCompileShader(shader_id);

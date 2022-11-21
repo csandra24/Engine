@@ -55,7 +55,7 @@ update_status ModulRenderExercise::PreUpdate()
 
 update_status ModulRenderExercise::Update()
 {
-	//renderTriangle(VBOTr, App->program->linkingProgram);
+	renderTriangle(VBOTr, App->program->linkingProgram);
 	App->draw->Draw(view,proj, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return UPDATE_CONTINUE;
 }
@@ -94,7 +94,7 @@ unsigned ModulRenderExercise::renderTriangle(unsigned VBO, unsigned program)
 
 	AVISO("RenderTriangle");
 
-	float4x4 model, view, proj;
+	//float4x4 model, view, proj;
 	// TODO: retrieve model view and projection
 
 	glUseProgram(program);
