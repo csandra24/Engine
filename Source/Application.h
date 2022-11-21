@@ -1,9 +1,9 @@
 #ifndef __Application_H__
 #define __Application_H__
 
-#include<list>
+#include <list>
 #include "Globals.h"
-#include "Module.h"
+#include "./Modules/Module.h"
 
 class ModuleRender;
 class ModuleWindow;

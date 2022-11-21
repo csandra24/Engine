@@ -193,20 +193,20 @@
     <ClCompile Include="lib\MathGeoLib_Source\Math\SSEMath.cpp" />
     <ClCompile Include="lib\MathGeoLib_Source\Math\TransformOps.cpp" />
     <ClCompile Include="lib\MathGeoLib_Source\Time\Clock.cpp" />
-    <ClCompile Include="ModuleDebugDraw.cpp" />
-    <ClCompile Include="ModuleImgui.cpp" />
+    <ClCompile Include="Modules\ModuleDebugDraw.cpp" />
+    <ClCompile Include="Modules\ModuleImgui.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ModuleInput.cpp" />
-    <ClCompile Include="ModuleProgram.cpp" />
-    <ClCompile Include="ModuleRender.cpp" />
-    <ClCompile Include="ModuleWindow.cpp" />
-    <ClCompile Include="ModulRenderExercise.cpp" />
+    <ClCompile Include="Modules\ModuleInput.cpp" />
+    <ClCompile Include="Modules\ModuleProgram.cpp" />
+    <ClCompile Include="Modules\ModuleRender.cpp" />
+    <ClCompile Include="Modules\ModuleWindow.cpp" />
+    <ClCompile Include="Modules\ModulRenderExercise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="debugdraw.h" />
-    <ClInclude Include="debug_draw.hpp" />
+    <ClInclude Include="Debug_Draw\debugdraw.h" />
+    <ClInclude Include="Debug_Draw\debug_draw.hpp" />
     <ClInclude Include="Dummy.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\eglew.h" />
@@ -383,14 +383,14 @@
     <ClInclude Include="lib\SDL\include\SDL_version.h" />
     <ClInclude Include="lib\SDL\include\SDL_video.h" />
     <ClInclude Include="lib\SDL\include\SDL_vulkan.h" />
-    <ClInclude Include="Module.h" />
-    <ClInclude Include="ModuleDebugDraw.h" />
-    <ClInclude Include="ModuleImgui.h" />
-    <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleProgram.h" />
-    <ClInclude Include="ModuleRender.h" />
-    <ClInclude Include="ModuleWindow.h" />
-    <ClInclude Include="ModulRenderExercise.h" />
+    <ClInclude Include="Modules\Module.h" />
+    <ClInclude Include="Modules\ModuleDebugDraw.h" />
+    <ClInclude Include="Modules\ModuleImgui.h" />
+    <ClInclude Include="Modules\ModuleInput.h" />
+    <ClInclude Include="Modules\ModuleProgram.h" />
+    <ClInclude Include="Modules\ModuleRender.h" />
+    <ClInclude Include="Modules\ModuleWindow.h" />
+    <ClInclude Include="Modules\ModulRenderExercise.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\glew-2.1.0\doc\advanced.html" />
@@ -412,8 +412,8 @@
     <None Include="lib\MathGeoLib_Source\Math\Matrix.inl" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="FragmentShader.txt" />
-    <Text Include="VertexShader.txt" />
+    <Text Include="Shaders\FragmentShader.txt" />
+    <Text Include="Shaders\VertexShader.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
