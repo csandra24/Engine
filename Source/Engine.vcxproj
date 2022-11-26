@@ -194,6 +194,7 @@
     <ClCompile Include="lib\MathGeoLib_Source\Math\SSEMath.cpp" />
     <ClCompile Include="lib\MathGeoLib_Source\Math\TransformOps.cpp" />
     <ClCompile Include="lib\MathGeoLib_Source\Time\Clock.cpp" />
+    <ClCompile Include="Modules\ModuleCamera.cpp" />
     <ClCompile Include="Modules\ModuleDebugDraw.cpp" />
     <ClCompile Include="Modules\ModuleImgui.cpp" />
     <ClCompile Include="log.cpp" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Modules\ModuleInput.cpp" />
     <ClCompile Include="Modules\ModuleProgram.cpp" />
     <ClCompile Include="Modules\ModuleRender.cpp" />
+    <ClCompile Include="Modules\ModuleTimer.cpp" />
     <ClCompile Include="Modules\ModuleWindow.cpp" />
     <ClCompile Include="Modules\ModulRenderExercise.cpp" />
   </ItemGroup>
@@ -385,11 +387,13 @@
     <ClInclude Include="lib\SDL\include\SDL_video.h" />
     <ClInclude Include="lib\SDL\include\SDL_vulkan.h" />
     <ClInclude Include="Modules\Module.h" />
+    <ClInclude Include="Modules\ModuleCamera.h" />
     <ClInclude Include="Modules\ModuleDebugDraw.h" />
     <ClInclude Include="Modules\ModuleImgui.h" />
     <ClInclude Include="Modules\ModuleInput.h" />
     <ClInclude Include="Modules\ModuleProgram.h" />
     <ClInclude Include="Modules\ModuleRender.h" />
+    <ClInclude Include="Modules\ModuleTimer.h" />
     <ClInclude Include="Modules\ModuleWindow.h" />
     <ClInclude Include="Modules\ModulRenderExercise.h" />
   </ItemGroup>

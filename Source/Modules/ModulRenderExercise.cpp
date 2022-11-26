@@ -92,8 +92,6 @@ unsigned ModulRenderExercise::Triangle()
 unsigned ModulRenderExercise::renderTriangle(unsigned VBO, unsigned program)
 {
 
-	AVISO("RenderTriangle");
-
 	//float4x4 model, view, proj;
 	// TODO: retrieve model view and projection
 

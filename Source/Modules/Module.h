@@ -18,7 +18,6 @@ public:
 		return true; 
 	}
 
-	//virtual void Start() = 0;
 
 	virtual update_status PreUpdate()
 	{

@@ -13,6 +13,8 @@ class ModuleImgui;
 class ModuleProgram;
 class ModulRenderExercise;
 class ModuleDebugDraw;
+class ModuleCamera;
+class ModuleTimer;
 
 class Application
 {
@@ -26,21 +28,25 @@ public:
 	bool CleanUp();
 
 	void RequestBrowser(const char* url) const;
-	void LogGui(const char* log) const;
+	//void LogGui(const char* log) const;
 
 
 public:
 	ModuleRender* renderer = nullptr;
 	ModuleWindow* window = nullptr;
+	ModuleTimer* timer = nullptr;
 	ModuleInput* input = nullptr;
 	ModuleImgui* ImGui = nullptr;
 	ModuleProgram* program = nullptr;
 	ModulRenderExercise* exercise = nullptr;
 	ModuleDebugDraw* draw = nullptr;
+	ModuleCamera* camera = nullptr;
+	
 
 private:
 
 	std::list<Module*> modules;
+	float deltaTime = 0.0f;
 
 };
 

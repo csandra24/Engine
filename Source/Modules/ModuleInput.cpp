@@ -35,22 +35,46 @@ bool ModuleInput::Init()
 update_status ModuleInput::Update()
 {
     SDL_Event sdlEvent;
+    
+    mouseMotion = { 0,0 };
+    mouseWheel = 0;
 
     while (SDL_PollEvent(&sdlEvent) != 0)
     {
+        ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
+
         switch (sdlEvent.type)
         {
             case SDL_QUIT:
                 return UPDATE_STOP;
+
             case SDL_WINDOWEVENT:
                 if (sdlEvent.window.event == SDL_WINDOWEVENT_RESIZED || sdlEvent.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
                     App->renderer->WindowResized(sdlEvent.window.data1, sdlEvent.window.data2);
                 break;
+
+            case SDL_MOUSEMOTION:
+                
+                break;
+
+            case SDL_MOUSEWHEEL:
+                if (sdlEvent.wheel.y > 0) // scroll up
+                {
+                    //AVISO("UP");
+                    mouseWheel = sdlEvent.wheel.x;
+                }
+                else if (sdlEvent.wheel.y < 0) // scroll down
+                {
+                    //AVISO("DOWN");
+                    mouseWheel = sdlEvent.wheel.y;
+                }
+                break;
+
+            case SDL_MOUSEBUTTONUP:
+
+                break;
         }
     }
-
-    
-    ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
 
     keyboard = SDL_GetKeyboardState(NULL);
 
@@ -64,5 +88,3 @@ bool ModuleInput::CleanUp()
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
 }
-
-

@@ -7,6 +7,8 @@
 #include "./Modules/ModuleProgram.h"
 #include "./Modules/ModulRenderExercise.h"
 #include "./Modules/ModuleDebugDraw.h"
+#include "./Modules/ModuleCamera.h"
+#include "./Modules/ModuleTimer.h"
 
 using namespace std;
 
@@ -14,12 +16,14 @@ Application::Application()
 {
 	// Order matters: they will Init/start/update in this order
 	modules.push_back(window = new ModuleWindow());
+	modules.push_back(timer = new ModuleTimer());
 	modules.push_back(renderer = new ModuleRender());
 	modules.push_back(input = new ModuleInput());
-	modules.push_back(ImGui = new ModuleImgui());
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(exercise = new ModulRenderExercise());
 	modules.push_back(draw = new ModuleDebugDraw());
+	modules.push_back(ImGui = new ModuleImgui());
+	modules.push_back(camera = new ModuleCamera());
 }
 
 Application::~Application()
@@ -43,6 +47,7 @@ bool Application::Init()
 update_status Application::Update()
 {
 	update_status ret = UPDATE_CONTINUE;
+
 
 	for(list<Module*>::iterator it = modules.begin(); it != modules.end() && ret == UPDATE_CONTINUE; ++it)
 		ret = (*it)->PreUpdate();
