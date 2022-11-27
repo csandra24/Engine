@@ -29,8 +29,6 @@ private:
 	void MainMenu();
 	bool exit_app = false;
 	bool consoleEnabled = true;
-
-
 	
 };
 

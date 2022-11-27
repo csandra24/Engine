@@ -3,6 +3,7 @@
 #include "ModulRenderExercise.h"
 #include "ModuleProgram.h"
 #include "ModuleDebugDraw.h"
+#include "ModuleCamera.h"
 #include "../lib/SDL/include/SDL.h"
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 
@@ -56,7 +57,8 @@ update_status ModulRenderExercise::PreUpdate()
 update_status ModulRenderExercise::Update()
 {
 	renderTriangle(VBOTr, App->program->linkingProgram);
-	App->draw->Draw(view,proj, SCREEN_WIDTH, SCREEN_HEIGHT);
+	App->draw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	return UPDATE_CONTINUE;
 }
 
@@ -91,8 +93,6 @@ unsigned ModulRenderExercise::Triangle()
 
 unsigned ModulRenderExercise::renderTriangle(unsigned VBO, unsigned program)
 {
-
-	//float4x4 model, view, proj;
 	// TODO: retrieve model view and projection
 
 	glUseProgram(program);

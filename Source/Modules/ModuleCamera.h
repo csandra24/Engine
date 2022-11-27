@@ -21,10 +21,24 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
+	float4x4 GetProjectionMatrix() const;
+	float4x4 GetViewMatrix() const;
+	void SetHorizontalFOV(float Fov);
+	void SetVerticalFOV(float Fov);
+	void SetPlaneDistance(float Near, float Far);
+	void SetAspectRatio(const float width, const float height);
+	void LookAt(const float& x, const float& y, const float& z);
+
 private:
 
 	Frustum* frustum;
 	float4x4 model, proj, view;
+
+	float aspectRatio;
+	float movementSpeed = 5.0f;
+	float rotate = 25.0f;
+
+	float focus_distance = 0.0f;
 
 };
 

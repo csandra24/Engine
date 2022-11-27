@@ -54,24 +54,31 @@ update_status ModuleInput::Update()
                 break;
 
             case SDL_MOUSEMOTION:
-                
+                mouseMotion.x = sdlEvent.motion.xrel / (SCREEN_WIDTH / SCREEN_HEIGHT);
+                mouseMotion.y = sdlEvent.motion.yrel / (SCREEN_WIDTH / SCREEN_HEIGHT);
+                mouse.x = sdlEvent.motion.x / (SCREEN_WIDTH / SCREEN_HEIGHT);
+                mouse.y = sdlEvent.motion.y / (SCREEN_WIDTH / SCREEN_HEIGHT);
                 break;
 
             case SDL_MOUSEWHEEL:
-                if (sdlEvent.wheel.y > 0) // scroll up
+                if (sdlEvent.wheel.y > 0) //Scroll Up
                 {
-                    //AVISO("UP");
+                    AVISO("UP");
                     mouseWheel = sdlEvent.wheel.x;
                 }
-                else if (sdlEvent.wheel.y < 0) // scroll down
+                else if (sdlEvent.wheel.y < 0) //Scroll Down
                 {
-                    //AVISO("DOWN");
+                    AVISO("DOWN");
                     mouseWheel = sdlEvent.wheel.y;
                 }
                 break;
 
             case SDL_MOUSEBUTTONUP:
+                mouseButtons[sdlEvent.button.button - 1] = KeyState::KEY_UP;
+                break;
 
+            case SDL_MOUSEBUTTONDOWN:
+                mouseButtons[sdlEvent.button.button - 1] = KeyState::KEY_DOWN;
                 break;
         }
     }

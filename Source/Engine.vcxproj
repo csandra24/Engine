@@ -99,15 +99,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\lib\glfw\include\GLFW;.\lib\SDL\include;.\lib\glew-2.1.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\lib\glfw\include\GLFW;.\lib\SDL\include;.\lib\glew-2.1.0\include\GL;.\lib\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;26495;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;sdl2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\lib\glew-2.1.0\lib\Release\x64;.\lib\SDL\lib\x64;.\lib\glfw\src</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DirectXTex.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;sdl2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\lib\glew-2.1.0\lib\Release\x64;.\lib\SDL\lib\x64;.\lib\glfw\src;.\lib\DirectXTex\DirectXTex\Bin\Desktop_2019_Win10\x64\Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,6 +145,44 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="lib\DirectXTex\Auxiliary\DirectXTexEXR.cpp" />
+    <ClCompile Include="lib\DirectXTex\DDSTextureLoader\DDSTextureLoader11.cpp" />
+    <ClCompile Include="lib\DirectXTex\DDSTextureLoader\DDSTextureLoader12.cpp" />
+    <ClCompile Include="lib\DirectXTex\DDSTextureLoader\DDSTextureLoader9.cpp" />
+    <ClCompile Include="lib\DirectXTex\DDSView\ddsview.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\BC.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\BC4BC5.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\BC6HBC7.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\BCDirectCompute.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexCompress.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexCompressGPU.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexConvert.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexD3D11.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexD3D12.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexDDS.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexFlipRotate.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexHDR.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexImage.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexMipmaps.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexMisc.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexNormalMaps.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexPMAlpha.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexResize.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexTGA.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexUtil.cpp" />
+    <ClCompile Include="lib\DirectXTex\DirectXTex\DirectXTexWIC.cpp" />
+    <ClCompile Include="lib\DirectXTex\ScreenGrab\ScreenGrab11.cpp" />
+    <ClCompile Include="lib\DirectXTex\ScreenGrab\ScreenGrab12.cpp" />
+    <ClCompile Include="lib\DirectXTex\ScreenGrab\ScreenGrab9.cpp" />
+    <ClCompile Include="lib\DirectXTex\Texassemble\AnimatedGif.cpp" />
+    <ClCompile Include="lib\DirectXTex\Texassemble\texassemble.cpp" />
+    <ClCompile Include="lib\DirectXTex\Texconv\ExtendedBMP.cpp" />
+    <ClCompile Include="lib\DirectXTex\Texconv\PortablePixMap.cpp" />
+    <ClCompile Include="lib\DirectXTex\Texconv\texconv.cpp" />
+    <ClCompile Include="lib\DirectXTex\Texdiag\texdiag.cpp" />
+    <ClCompile Include="lib\DirectXTex\WICTextureLoader\WICTextureLoader11.cpp" />
+    <ClCompile Include="lib\DirectXTex\WICTextureLoader\WICTextureLoader12.cpp" />
+    <ClCompile Include="lib\DirectXTex\WICTextureLoader\WICTextureLoader9.cpp" />
     <ClCompile Include="lib\imgui-docking\imgui.cpp" />
     <ClCompile Include="lib\imgui-docking\imgui_demo.cpp" />
     <ClCompile Include="lib\imgui-docking\imgui_draw.cpp" />
@@ -212,6 +250,24 @@
     <ClInclude Include="Debug_Draw\debug_draw.hpp" />
     <ClInclude Include="Dummy.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="lib\DirectXTex\Auxiliary\DirectXTexEXR.h" />
+    <ClInclude Include="lib\DirectXTex\DDSTextureLoader\DDSTextureLoader11.h" />
+    <ClInclude Include="lib\DirectXTex\DDSTextureLoader\DDSTextureLoader12.h" />
+    <ClInclude Include="lib\DirectXTex\DDSTextureLoader\DDSTextureLoader9.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\BC.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\BCDirectCompute.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\d3dx12.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\DDS.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\DirectXTex.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\DirectXTexP.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\filters.h" />
+    <ClInclude Include="lib\DirectXTex\DirectXTex\scoped.h" />
+    <ClInclude Include="lib\DirectXTex\ScreenGrab\ScreenGrab11.h" />
+    <ClInclude Include="lib\DirectXTex\ScreenGrab\ScreenGrab12.h" />
+    <ClInclude Include="lib\DirectXTex\ScreenGrab\ScreenGrab9.h" />
+    <ClInclude Include="lib\DirectXTex\WICTextureLoader\WICTextureLoader11.h" />
+    <ClInclude Include="lib\DirectXTex\WICTextureLoader\WICTextureLoader12.h" />
+    <ClInclude Include="lib\DirectXTex\WICTextureLoader\WICTextureLoader9.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\eglew.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\glew.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\glxew.h" />
@@ -398,6 +454,7 @@
     <ClInclude Include="Modules\ModulRenderExercise.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="lib\DirectXTex\DirectXTex\DirectXTex.inl" />
     <None Include="lib\glew-2.1.0\doc\advanced.html" />
     <None Include="lib\glew-2.1.0\doc\basic.html" />
     <None Include="lib\glew-2.1.0\doc\build.html" />
@@ -415,6 +472,12 @@
     <None Include="lib\MathGeoLib_Source\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
     <None Include="lib\MathGeoLib_Source\Math\float2.inl" />
     <None Include="lib\MathGeoLib_Source\Math\Matrix.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="lib\DirectXTex\DDSView\DDSView.rc" />
+    <ResourceCompile Include="lib\DirectXTex\Texassemble\texassemble.rc" />
+    <ResourceCompile Include="lib\DirectXTex\Texconv\Texconv.rc" />
+    <ResourceCompile Include="lib\DirectXTex\Texdiag\texdiag.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,9 +2,11 @@
 #include "../Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
+#include "ModuleCamera.h"
 #include "../lib/SDL/include/SDL.h"
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 //#include "./lib/MathGeoLib_Source/MathGeoLib.h"
+#include "../lib/MathGeoLib_Source/Math/float4x4.h"
 
 ModuleRender::ModuleRender()
 {
@@ -62,7 +64,6 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-
 	return UPDATE_CONTINUE;
 }
 

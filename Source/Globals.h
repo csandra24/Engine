@@ -19,6 +19,14 @@ enum update_status
 	UPDATE_ERROR
 };
 
+enum class KeyState 
+{
+	KEY_IDLE = 0,
+	KEY_DOWN,
+	KEY_REPEAT,
+	KEY_UP
+};
+
 //Constants................
 #define MAX_BUF_SIZE 4096
 #define DEGTORAD 0.01745329251f
