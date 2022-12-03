@@ -12,11 +12,6 @@
 #include <iostream>
 using namespace std;
 
-
-
-
-ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.05f, 1.00f);
-
 ModuleImgui::ModuleImgui()
 {
 }
@@ -65,7 +60,11 @@ update_status ModuleImgui::PreUpdate()
 	ImGui::NewFrame();
 
 	MainMenu();
-	ImGui::ShowDemoWindow();
+	LogConsole();
+	//Configuration();
+	About();   
+
+	StyleImgui();
 
 	return UPDATE_CONTINUE;
 }
@@ -80,7 +79,6 @@ update_status ModuleImgui::Update()
 
 	if (exit_app)
 		return UPDATE_STOP;
-
 
 	return UPDATE_CONTINUE;
 }
@@ -124,7 +122,8 @@ void ModuleImgui::MainMenu() {
 		if (ImGui::BeginMenu("Windows")) {
 			
 			ImGui::MenuItem("Console", "", &consoleEnabled);
-			//ImGui::MenuItem("FPS Graph", "", &);
+			ImGui::MenuItem("About", "", &aboutEnabled);
+			ImGui::MenuItem("Configuration", "", &configurationEnabled);
 
 			ImGui::EndMenu();
 		}
@@ -137,18 +136,95 @@ void ModuleImgui::MainMenu() {
 		}
 		
 		ImGui::EndMainMenuBar();
-
-		if (consoleEnabled) {
-			if (ImGui::Begin("Console")) {
-				ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
-				ImGui::TextUnformatted(logs.c_str());
-				if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
-				{
-					ImGui::SetScrollHereY(1.0f);
-				}
-				ImGui::EndChild();
-			}
-			ImGui::End();
-		}
 	}
+
+}
+
+void ModuleImgui::LogConsole()
+{
+	if (consoleEnabled) {
+
+		ImGui::SetNextWindowSize(ImVec2(1030, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(0, 530), ImGuiCond_Once);
+
+		if (ImGui::Begin("Console")) {
+			ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
+			ImGui::TextUnformatted(logs.c_str());
+			if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+			{
+				ImGui::SetScrollHereY(1.0f);
+			}
+			ImGui::EndChild();
+		}
+		ImGui::End();
+	}
+}
+
+void ModuleImgui::About()
+{
+	if (aboutEnabled) {
+		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(0, 18), ImGuiCond_Once);
+
+		if (ImGui::Begin("About"))
+		{
+			ImGui::Text(TITLE);
+			ImGui::Text("");
+			ImGui::Text("Description:");
+			ImGui::Text("Name Engine");
+			ImGui::Text("");
+			ImGui::Text("Developed by Sandra Campana");
+			ImGui::Text("");
+			ImGui::Text("Libraries used:");
+			ImGui::Text("- OpenGL");
+			ImGui::Text("- MathGeoLib");
+			ImGui::Text("- SDL");
+			ImGui::Text("- ImGui");
+			ImGui::Text("- Glew");
+			ImGui::Text("- DirectXTex");
+			ImGui::Text("- Assimp");
+			ImGui::Text("");
+			ImGui::Text("MIT LICENSE | Copyright (c) 2022 Sandra Campana");
+		}
+		ImGui::End();
+	}
+}
+
+//void ModuleImgui::Configuration()
+//{
+//	if (configurationEnabled) {
+//
+//		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
+//		ImGui::SetNextWindowPos(ImVec2(400, 18), ImGuiCond_Once);
+//
+//		if (ImGui::Begin("Configuration")) {
+//			
+//			// FPS GRAPH
+//			if (ImGui::CollapsingHeader("Application"))
+//			{
+//				char title[25];
+//					sprintf_s(title, 25, "Framerate %.1f", logsFPS[FPSIndex]);
+//					ImGui::PlotHistogram("##framerate", &logsFPS[0], 100, FPSIndex, title, 0.0f, 100.0f, ImVec2(310, 100));
+//					sprintf_s(title, 25, "Miliseconds %.1f", logsMiliseconds[FPSIndex]);
+//					ImGui::PlotHistogram("##miliseconds", &logsMiliseconds[0], 100, FPSIndex, title, 0.0f, 40.0f, ImVec2(310, 100));
+//			}
+//
+//			//WINDOW OPTIONS
+//
+//			// HARDWARE
+//
+//		}
+//	}
+//	
+//		
+//}
+
+
+void ModuleImgui::StyleImgui()
+{
+	ImGui::GetStyle().WindowBorderSize = 0.0f;
+
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	
 }

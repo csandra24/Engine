@@ -20,8 +20,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 	bool getKey(int id) const { return keyboard[id]; }
-	const float getMouseWheel() const { return mouseWheel; }
-	const float2& getMouseMotion() const { return mouseMotion; }
+	const float GetMouseWheel() const { return mouseWheel; }
+	const float2& GetMouseMotion() const { return mouseMotion; }
 	inline KeyState GetMouseButton(int id) const { return mouseButtons[id - 1]; }
 
 private:

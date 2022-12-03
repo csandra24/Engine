@@ -15,7 +15,7 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
-	float getDeltaTime() { return deltaTime; }
+	float GetDeltaTime() { return deltaTime; }
 	
 private:
 

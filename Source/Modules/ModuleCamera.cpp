@@ -30,7 +30,7 @@ bool ModuleCamera::Init()
 	frustum->SetViewPlaneDistances(0.1f, 1000.0f);
 	frustum->SetHorizontalFovAndAspectRatio(DEGTORAD * 90.0f, aspectRatio);
 
-	frustum->SetPos(float3(0.0f, 1.0f, -2.0f));
+	frustum->SetPos(float3(0.0f, 3.0f, 10.0f));
 	frustum->SetFront(-float3::unitZ);
 	frustum->SetUp(float3::unitY);
 
@@ -47,57 +47,53 @@ update_status ModuleCamera::PreUpdate()
 
 update_status ModuleCamera::Update()
 {
-	float deltaTime = App->timer->getDeltaTime();
-	const float2& mouseMotion = App->input->getMouseMotion();
-	const float mouseWheel = App->input->getMouseWheel();
+	float deltaTime = App->timer->GetDeltaTime();
+	const float2& mouseMotion = App->input->GetMouseMotion();
+	const float mouseWheel = App->input->GetMouseWheel();
+
+	float finalmoveSpeed = movementSpeed;
 
 	// WASD + QE
 	if (App->input->getKey(SDL_SCANCODE_Q)) //Up
 	{
 		//AVISO("UP");
-		frustum->SetPos(frustum->Pos() + frustum->Up().Normalized() * .1f * movementSpeed * deltaTime);
+		frustum->SetPos(frustum->Pos() + frustum->Up().Normalized() * .1f * finalmoveSpeed * deltaTime);
 
-		if (App->input->getKey(SDL_SCANCODE_LSHIFT)) { movementSpeed *= 2; }
 	}
 
 	if (App->input->getKey(SDL_SCANCODE_E)) //Down
 	{
-		AVISO("Down");
-		frustum->SetPos(frustum->Pos() + frustum->Up().Normalized() * -.1f * movementSpeed * deltaTime);
+		
+		frustum->SetPos(frustum->Pos() + frustum->Up().Normalized() * -.1f * finalmoveSpeed * deltaTime);
 
-		if (App->input->getKey(SDL_SCANCODE_LSHIFT)) { movementSpeed *= 2; }
 	}
 
 	if (App->input->getKey(SDL_SCANCODE_W)) //Forward
 	{
-		AVISO("Forward");
-		frustum->SetPos(frustum->Pos() + frustum->Front() * 0.1f * movementSpeed * deltaTime);
+		
+		frustum->SetPos(frustum->Pos() + frustum->Front() * 0.1f * finalmoveSpeed * deltaTime);
 
-		if (App->input->getKey(SDL_SCANCODE_LSHIFT)) { movementSpeed *= 2; }
 	}
 
 	if (App->input->getKey(SDL_SCANCODE_S)) //Backward
 	{
-		AVISO("Backward");
-		frustum->SetPos(frustum->Pos() + frustum->Front() * -0.1f * movementSpeed * deltaTime);
+		
+		frustum->SetPos(frustum->Pos() + frustum->Front() * -0.1f * finalmoveSpeed * deltaTime);
 
-		if (App->input->getKey(SDL_SCANCODE_LSHIFT)) { movementSpeed *= 2; }
 	}
 
 	if (App->input->getKey(SDL_SCANCODE_A)) //Left
 	{
-		AVISO("Left");
-		frustum->SetPos(frustum->Pos() + frustum->WorldRight() * -0.1f * movementSpeed * deltaTime);
+		
+		frustum->SetPos(frustum->Pos() + frustum->WorldRight() * -0.1f * finalmoveSpeed * deltaTime);
 
-		if (App->input->getKey(SDL_SCANCODE_LSHIFT)) { movementSpeed *= 2; }
 	}
 
 	if (App->input->getKey(SDL_SCANCODE_D)) //Right
 	{
-		AVISO("Right");
-		frustum->SetPos(frustum->Pos() + frustum->WorldRight() * 0.1f * movementSpeed * deltaTime);
 
-		if (App->input->getKey(SDL_SCANCODE_LSHIFT)) { movementSpeed *= 2; }
+		frustum->SetPos(frustum->Pos() + frustum->WorldRight() * 0.1f * finalmoveSpeed * deltaTime);
+
 	}
 
 	if (App->input->getKey(SDL_SCANCODE_F)) //Reset
@@ -105,6 +101,11 @@ update_status ModuleCamera::Update()
 		frustum->SetPos(float3(0.0f, 3.0f, 10.0f));
 		frustum->SetFront(-float3::unitZ);
 		frustum->SetUp(float3::unitY);
+	}
+
+	if (App->input->getKey(SDL_SCANCODE_LSHIFT))
+	{
+		finalmoveSpeed *= 2;
 	}
 
 

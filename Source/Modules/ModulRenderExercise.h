@@ -26,7 +26,6 @@ private:
 	const Uint8* keyboard = NULL;
 	unsigned int VBOTr ;
 
-	Frustum frustum;
 	float4x4 model, view, proj;
 };
 

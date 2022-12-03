@@ -63,12 +63,12 @@ update_status ModuleInput::Update()
             case SDL_MOUSEWHEEL:
                 if (sdlEvent.wheel.y > 0) //Scroll Up
                 {
-                    AVISO("UP");
+                    
                     mouseWheel = sdlEvent.wheel.x;
                 }
                 else if (sdlEvent.wheel.y < 0) //Scroll Down
                 {
-                    AVISO("DOWN");
+                    
                     mouseWheel = sdlEvent.wheel.y;
                 }
                 break;

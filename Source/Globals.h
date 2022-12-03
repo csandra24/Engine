@@ -9,8 +9,12 @@
 #define AVISO(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
 
 void log(const char file[], int line, const char* format, ...);
+/*void logFPS(float deltaTime);*/
 
 extern std::string logs;
+/*extern int FPSIndex;
+extern float logsFPS[];
+extern float logsMiliseconds[];*/
 
 enum update_status
 {

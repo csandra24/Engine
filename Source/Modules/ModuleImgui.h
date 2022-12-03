@@ -20,7 +20,10 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
-
+	void LogConsole();
+	void About();
+	//void Configuration();
+	void StyleImgui();
 	
 
 private:
@@ -29,6 +32,8 @@ private:
 	void MainMenu();
 	bool exit_app = false;
 	bool consoleEnabled = true;
+	bool aboutEnabled = false;
+	bool configurationEnabled = true;
 	
 };
 

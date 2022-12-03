@@ -35,7 +35,7 @@ private:
 	float4x4 model, proj, view;
 
 	float aspectRatio;
-	float movementSpeed = 5.0f;
+	float movementSpeed = 10.0f;
 	float rotate = 25.0f;
 
 	float focus_distance = 0.0f;

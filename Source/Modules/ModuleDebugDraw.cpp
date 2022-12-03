@@ -619,7 +619,7 @@ void ModuleDebugDraw::Draw(const float4x4& view, const float4x4& proj, unsigned 
     implementation->height    = height;
     implementation->mvpMatrix = proj * view;
 
-    dd::xzSquareGrid(-500, 500, -0.1f, 1.0f, dd::colors::White);
+    dd::xzSquareGrid(-10,10, -0.1f, 1.0f, dd::colors::White);
     dd::axisTriad(float4x4::identity, 0.1f, 1.0f);
 
     dd::flush();
