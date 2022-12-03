@@ -14,13 +14,14 @@ public:
 	~ModulRenderExercise();
 
 	bool Init();
+	bool Start();
 	update_status PreUpdate();
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
 
 	unsigned Triangle();
-	unsigned renderTriangle(unsigned VBOTr, unsigned linkingProgram);
+	unsigned renderTriangle(unsigned VBOTr, unsigned Program);
 
 private:
 	const Uint8* keyboard = NULL;

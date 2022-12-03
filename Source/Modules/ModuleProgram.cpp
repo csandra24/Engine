@@ -4,7 +4,6 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "../lib/SDL/include/SDL.h"
-#include "../lib/glew-2.1.0/include/GL/glew.h"
 
 
 using namespace std;
@@ -22,33 +21,24 @@ ModuleProgram::~ModuleProgram()
 // Called before render is available
 bool ModuleProgram::Init()
 {
-	bool ret = true;
-
-	char* vertexShader = LoadShaderSource("VertexShader.glsl");
-	char* fragmentShader = LoadShaderSource("FragmentShader.glsl");
-
-	unsigned vrtx_compiled = CompileShader(GL_VERTEX_SHADER, vertexShader);
-	unsigned frg_compiled = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-	glCompileShader(vrtx_compiled);
-	glCompileShader(frg_compiled);
-
-	linkingProgram = LinkShader(vrtx_compiled, frg_compiled);
-
-	return ret;
-
+	return true;
 }
 
+bool ModuleProgram::Start() {
 
+	AVISO("Loading shaders");
+	unsigned frg_compiled = CompileShader(GL_FRAGMENT_SHADER, LoadShaderSource("FragmentShader.glsl"));
+	unsigned vrtx_compiled = CompileShader(GL_VERTEX_SHADER, LoadShaderSource("VertexShader.glsl"));
 
-update_status ModuleProgram::Update()
-{
-	return UPDATE_CONTINUE;
+	Program = LinkShader(vrtx_compiled, frg_compiled);
+	return true;
 }
 
 // Called before quitting
 bool ModuleProgram::CleanUp()
 {
-	glDeleteProgram(linkingProgram);
+	AVISO("Deleting shaders once linked");
+	glDeleteProgram(Program);
 	
 	return true;
 }
@@ -71,12 +61,10 @@ char* ModuleProgram::LoadShaderSource(const char* shader_file_name)
 	return data;
 }
 
-unsigned ModuleProgram::CompileShader(unsigned type, const char* source)
+unsigned ModuleProgram::CompileShader( GLenum type, const char* source)
 {
-	string shaderSource;
+	
 	unsigned shader_id = glCreateShader(type);
-
-	//source = (const GLchar*)shaderSource.c_str();
 	glShaderSource(shader_id, 1, &source, 0);
 
 	glCompileShader(shader_id);
@@ -106,29 +94,28 @@ unsigned ModuleProgram::CompileShader(unsigned type, const char* source)
 
 unsigned ModuleProgram::LinkShader(unsigned vtx_shader, unsigned frg_shader)
 {
-	unsigned linkingProgram = glCreateProgram();
-	glAttachShader(linkingProgram, vtx_shader);
-	glAttachShader(linkingProgram, frg_shader);
-	glLinkProgram(linkingProgram);
+
+	unsigned programId = glCreateProgram();
+	glAttachShader(programId, vtx_shader);
+	glAttachShader(programId, frg_shader);
+	glLinkProgram(programId);
 	int res;
-	glGetProgramiv(linkingProgram, GL_LINK_STATUS, &res);
+	glGetProgramiv(programId, GL_LINK_STATUS, &res);
 	if (res == GL_FALSE)
 	{
 		int len = 0;
-		glGetProgramiv(linkingProgram, GL_INFO_LOG_LENGTH, &len);
+		glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &len);
 		if (len > 0)
 		{
 			int written = 0;
 			char* info = (char*)malloc(len);
-			glGetProgramInfoLog(linkingProgram, len, &written, info);
+			glGetProgramInfoLog(programId, len, &written, info);
 			AVISO("Program Log Info: %s", info);
 			free(info);
 		}
 	}
-
-	glDetachShader(linkingProgram, vtx_shader);
-	glDetachShader(linkingProgram, frg_shader);
-
-	return linkingProgram;
+	glDeleteShader(vtx_shader);
+	glDeleteShader(frg_shader);
+	return programId;
 
 }

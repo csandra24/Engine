@@ -28,6 +28,7 @@ public:
 	void SetPlaneDistance(float Near, float Far);
 	void SetAspectRatio(const float width, const float height);
 	void LookAt(const float& x, const float& y, const float& z);
+	void WindowResized(unsigned width, unsigned height);
 
 private:
 

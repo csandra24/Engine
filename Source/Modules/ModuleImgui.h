@@ -15,7 +15,7 @@ public:
 	~ModuleImgui();
 
 	bool Init();
-	void Start();
+	bool Start();
 	update_status PreUpdate() override;
 	update_status Update();
 	update_status PostUpdate();

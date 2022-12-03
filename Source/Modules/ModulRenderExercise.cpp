@@ -27,6 +27,12 @@ ModulRenderExercise::~ModulRenderExercise()
 // Called before render is available
 bool ModulRenderExercise::Init()
 {
+
+	return true;
+}
+
+bool ModulRenderExercise::Start(){
+
 	VBOTr = Triangle();
 
 	model = float4x4::FromTRS(float3(2.0f, 0.0f, 0.0f),
@@ -49,7 +55,7 @@ update_status ModulRenderExercise::Update()
 	proj = App->camera->GetProjectionMatrix();
 
 
-	renderTriangle(VBOTr, App->program->linkingProgram);
+	renderTriangle(VBOTr, App->program->Program);
 	App->draw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	return UPDATE_CONTINUE;

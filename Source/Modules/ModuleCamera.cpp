@@ -197,4 +197,9 @@ void ModuleCamera::LookAt(const float& x, const float& y, const float& z)
 	frustum->SetFront(vec(x, y, z));
 }
 
+void ModuleCamera::WindowResized(unsigned width, unsigned height)
+{
+	frustum->SetHorizontalFovAndAspectRatio(frustum->HorizontalFov(), width / height);
+}
+
 

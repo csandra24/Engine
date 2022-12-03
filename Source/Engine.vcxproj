@@ -211,7 +211,6 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Debug_Draw\debugdraw.h" />
     <ClInclude Include="Debug_Draw\debug_draw.hpp" />
-    <ClInclude Include="Dummy.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\eglew.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\glew.h" />

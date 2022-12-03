@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "../Globals.h"
+#include "../lib/glew-2.1.0/include/GL/glew.h"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -18,15 +19,17 @@ public:
 	~ModuleProgram();
 
 	bool Init();
-	update_status Update();
+	bool Start();
 	bool CleanUp();
+	unsigned Program;
 
-	
+private:
+
 	char* LoadShaderSource(const char* shader_file_name);
-	unsigned CompileShader(unsigned type, const char* source);
+	unsigned CompileShader(GLenum type, const char* source);
 	unsigned LinkShader(unsigned vtx_shader, unsigned frg_shader);
 	
-	unsigned linkingProgram;
+	
 	
 };
 

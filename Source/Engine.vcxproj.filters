@@ -756,9 +756,6 @@
     <ClInclude Include="Application.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Dummy.h">
-      <Filter>Main</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="lib">

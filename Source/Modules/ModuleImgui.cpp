@@ -26,7 +26,11 @@ ModuleImgui::~ModuleImgui()
 // Called before render is available
 bool ModuleImgui::Init()
 {
-	
+	return true;
+}
+
+bool ModuleImgui::Start() 
+{
 	AVISO("Creating context Imgui");
 
 	ImGui::CreateContext();
@@ -41,14 +45,7 @@ bool ModuleImgui::Init()
 	ImGui_ImplOpenGL3_Init();
 
 	//Load Font
-	
-	
-
 	return true;
-}
-
-void ModuleImgui::Start() 
-{
 }
 
 // Called every draw update
