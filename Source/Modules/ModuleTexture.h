@@ -15,7 +15,6 @@ class ModuleTexture : public Module
 public:
 	ModuleTexture();
 	~ModuleTexture();
-
 	bool Start();
 	bool CleanUp();
 

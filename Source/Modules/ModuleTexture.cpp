@@ -14,9 +14,7 @@ ModuleTexture::~ModuleTexture()
 {
 }
 
-bool ModuleTexture::Start()
-{
-
+bool ModuleTexture::Start() {
 	return true;
 }
 
@@ -40,12 +38,13 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 	glGenTextures(1, &textureID);
 
 	// "Bind" the newly created texture : all future texture functions will modify this texture
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	int internalFormat, format, type, Break;
+	GLint internalFormat, format, type, Break;
 	switch (metadata.format)
 	{
 	case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
@@ -67,11 +66,13 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 		break;
 	default:
 		AVISO("Unsupported format");
+		break;
 	}
 
 	// Give the image to OpenGL
 	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, metadata.width, metadata.height, 0, format, type, image->GetImage(0,0,0)->pixels);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
-	return true;
+	return textureID;
 
 }

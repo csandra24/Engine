@@ -21,7 +21,7 @@ public:
 	bool Init();
 	bool Start();
 	bool CleanUp();
-	unsigned Program;
+	unsigned int Program;
 
 private:
 

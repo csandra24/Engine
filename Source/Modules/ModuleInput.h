@@ -4,6 +4,10 @@
 #include "Module.h"
 #include "../Globals.h"
 #include "../lib/MathGeoLib_Source/Math/float2.h"
+#include "../lib/SDL/include/SDL.h"
+#include "../lib/imgui-docking/imgui.h"
+#include "../lib/imgui-docking/imgui_impl_sdl.h"
+#include "../lib/imgui-docking/imgui_impl_opengl3.h"
 
 #define N_MOUSEBUTTONS 5
 

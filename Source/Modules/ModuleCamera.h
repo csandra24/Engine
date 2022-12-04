@@ -6,6 +6,7 @@
 #include "../lib/MathGeoLib_Source/Geometry/Frustum.h"
 #include "../lib/MathGeoLib_Source/Math/float3x3.h"
 
+
 class Application;
 
 class ModuleCamera : public Module
