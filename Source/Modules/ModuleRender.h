@@ -4,6 +4,8 @@
 
 #include "Module.h"
 #include "../Globals.h"
+#include "../Scene/Model.h"
+#include "../lib/MathGeoLib_Source/Geometry/Frustum.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -16,6 +18,7 @@ public:
 	~ModuleRender();
 
 	bool Init();
+	bool Start();
 	update_status PreUpdate();
 	update_status Update();
 	update_status PostUpdate();
@@ -24,7 +27,9 @@ public:
 	void* context;
 
 private:
-	
+
+	Model* model;
+
 };
 
 #endif

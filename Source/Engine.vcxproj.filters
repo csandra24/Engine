@@ -28,9 +28,6 @@
     <ClCompile Include="Modules\ModuleWindow.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModulRenderExercise.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="lib\MathGeoLib_Source\Math\MathFunc.cpp">
       <Filter>lib\GeoMath</Filter>
     </ClCompile>
@@ -193,9 +190,6 @@
     <ClCompile Include="Scene\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Modules\ModulRenderExercise.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Modules\Module.h">
       <Filter>Modules</Filter>
     </ClInclude>

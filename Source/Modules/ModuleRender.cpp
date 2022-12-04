@@ -3,6 +3,10 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleCamera.h"
+#include "ModuleProgram.h"
+#include "ModuleDebugDraw.h"
+#include "../Scene/Model.h"
+
 #include "../lib/SDL/include/SDL.h"
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 #include "../lib/MathGeoLib_Source/Math/float4x4.h"
@@ -25,9 +29,8 @@ ModuleRender::~ModuleRender()
 // Called before render is available
 bool ModuleRender::Init()
 {
+	AVISO("Creating render context");
 	context = SDL_GL_CreateContext(App->window->window);
-
-	AVISO("Creating Renderer context");
 
 	GLenum err = glewInit();
 	// … check for errors
@@ -42,6 +45,17 @@ bool ModuleRender::Init()
 	glEnable(GL_DEPTH_TEST); // Enable depth test
 	glEnable(GL_CULL_FACE); // Enable cull backward faces
 	glFrontFace(GL_CCW); // Front faces will be counter clockwise
+
+	return true;
+}
+
+bool ModuleRender::Start() 
+{
+	AVISO("----- ASSIMP STARTS -----");
+
+	
+	AVISO("----- LOADING MODEL -----")
+	model = new Model("BakerHouse.fbx");
 
 	return true;
 }
@@ -63,6 +77,9 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
+
+	model->Draw();
+	App->draw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), SCREEN_WIDTH, SCREEN_HEIGHT);
 	return UPDATE_CONTINUE;
 }
 
@@ -76,10 +93,12 @@ update_status ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-	AVISO("Destroying renderer");
+	AVISO("Destroying render");
 
 	//Destroy window
 	SDL_GL_DeleteContext(context);
+
+	delete model;
 
 	return true;
 }

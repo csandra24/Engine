@@ -7,13 +7,17 @@
 
 Mesh::Mesh(const aiMesh* mesh)
 {
-
+	LoadVBO(mesh);
+	LoadEBO(mesh);
+	CreateVAO();
 	material_index = mesh->mMaterialIndex;
 }
 
 Mesh::~Mesh()
 {
-
+	glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(1, &ebo);
+	glDeleteVertexArrays(1, &vao);
 }
 
 void Mesh::Draw(const std::vector<unsigned>& model_textures)
@@ -32,6 +36,7 @@ void Mesh::Draw(const std::vector<unsigned>& model_textures)
 	glBindTexture(GL_TEXTURE_2D, model_textures[material_index]);
 	glUniform1i(glGetUniformLocation(program, "diffuse"), 0);
 	glBindVertexArray(vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, nullptr);
 }
 

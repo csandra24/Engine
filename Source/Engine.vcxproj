@@ -207,7 +207,6 @@
     <ClCompile Include="Modules\ModuleTexture.cpp" />
     <ClCompile Include="Modules\ModuleTimer.cpp" />
     <ClCompile Include="Modules\ModuleWindow.cpp" />
-    <ClCompile Include="Modules\ModulRenderExercise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -482,7 +481,6 @@
     <ClInclude Include="Modules\ModuleTexture.h" />
     <ClInclude Include="Modules\ModuleTimer.h" />
     <ClInclude Include="Modules\ModuleWindow.h" />
-    <ClInclude Include="Modules\ModulRenderExercise.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\assimp\include\assimp\color4.inl" />

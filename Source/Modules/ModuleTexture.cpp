@@ -2,9 +2,6 @@
 #include "../Application.h"
 #include "ModuleTexture.h"
 
-
-
-
 ModuleTexture::ModuleTexture()
 {
 }
@@ -30,6 +27,21 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 	image = new DirectX::ScratchImage;
 	DirectX::ScratchImage* flip = new DirectX::ScratchImage;
 
+	const size_t textureSize = strlen(texture_file) + 1;
+	wchar_t* textureFile = new wchar_t[textureSize];
+	mbstowcs(textureFile, texture_file, textureSize);
+
+	HRESULT loadResult = LoadFromDDSFile(textureFile, DirectX::DDS_FLAGS_NONE, &metadata, *flip);
+	if (FAILED(loadResult))
+	{
+		loadResult = DirectX::LoadFromTGAFile(textureFile, &metadata, *flip);
+		if (FAILED(loadResult))
+		{
+			loadResult = LoadFromWICFile(textureFile, DirectX::WIC_FLAGS_NONE, &metadata, *flip);
+		}
+	}
+	
+	
 	DirectX::FlipRotate(flip->GetImages(), flip->GetImageCount(), flip->GetMetadata(), DirectX::TEX_FR_FLIP_VERTICAL, *image);
 
 
@@ -44,7 +56,7 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	GLint internalFormat, format, type, Break;
+	GLint internalFormat, format, type;
 	switch (metadata.format)
 	{
 	case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
@@ -52,7 +64,7 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 		internalFormat = GL_RGBA8;
 		format = GL_RGBA;
 		type = GL_UNSIGNED_BYTE;
-		Break;
+		break;
 	case DXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
 	case DXGI_FORMAT_B8G8R8A8_UNORM:
 		internalFormat = GL_RGBA8;
@@ -70,7 +82,7 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 	}
 
 	// Give the image to OpenGL
-	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, metadata.width, metadata.height, 0, format, type, image->GetImage(0,0,0)->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, metadata.width, metadata.height, 0, format, type, image->GetImage(0, 0, 0)->pixels);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	return textureID;

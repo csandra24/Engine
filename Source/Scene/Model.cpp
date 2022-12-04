@@ -7,6 +7,24 @@
 #include "../lib/assimp/include/assimp/cimport.h"
 #include "../lib/assimp/include/assimp/postprocess.h"
 
+Model::Model(const char* file_name)
+{
+	Load(file_name);
+}
+
+Model::~Model()
+{
+
+}
+
+
+void Model::Draw()
+{
+	for (int i = 0; i < meshes.size(); i++) 
+	{
+		meshes[i]->Draw(materials);
+	}
+}
 
 void Model::Load(const char* file_name)
 {
@@ -15,7 +33,7 @@ void Model::Load(const char* file_name)
 	{
 		AVISO("Loading materials and meshes");
 		LoadMaterials(scene->mMaterials, scene->mNumMaterials);
-		//LoadMeshes(scene->mMeshes, scene->mNumMeshes);
+		LoadMesh(scene->mMeshes, scene->mNumMeshes);
 	}
 	else
 	{
@@ -37,9 +55,6 @@ void Model::LoadMaterials(aiMaterial** aiMaterial, const unsigned int& numMateri
 		}
 	}
 }
-
-
-
 
 void Model::LoadMesh(aiMesh** aiMesh, const unsigned int& NumMeshes)
 {

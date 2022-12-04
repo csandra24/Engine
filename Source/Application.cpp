@@ -5,7 +5,6 @@
 #include "./Modules/ModuleInput.h"
 #include "./Modules/ModuleImgui.h"
 #include "./Modules/ModuleProgram.h"
-#include "./Modules/ModulRenderExercise.h"
 #include "./Modules/ModuleDebugDraw.h"
 #include "./Modules/ModuleCamera.h"
 #include "./Modules/ModuleTimer.h"
@@ -23,9 +22,8 @@ Application::Application()
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(textures = new ModuleTexture());
 	modules.push_back(program = new ModuleProgram());
-	modules.push_back(exercise = new ModulRenderExercise());
-	modules.push_back(ImGui = new ModuleImgui());
 	modules.push_back(renderer = new ModuleRender());
+	modules.push_back(ImGui = new ModuleImgui());
 	
 	
 	

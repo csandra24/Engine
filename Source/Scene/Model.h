@@ -11,9 +11,12 @@
 class Model
 {
 public:
+	Model(const char* file_name);
+	~Model();
 	void Load(const char* file_name);
 	void LoadMaterials(aiMaterial** aiMaterial, const unsigned int& numMaterials);
 	void LoadMesh(aiMesh** aiMesh, const unsigned int& NumMeshes);
+	void Draw();
 
 private:
 	std::vector<GLuint> materials;
