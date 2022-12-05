@@ -55,7 +55,7 @@ bool ModuleRender::Start()
 
 	
 	AVISO("----- LOADING MODEL -----")
-	model = new Model("BakerHouse.fbx");
+	model = new Model("Assets/BakerHouse.fbx");
 
 	return true;
 }

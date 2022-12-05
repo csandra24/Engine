@@ -41,7 +41,6 @@ GLuint ModuleTexture::LoadTexture(const char* texture_file)
 		}
 	}
 	
-	
 	DirectX::FlipRotate(flip->GetImages(), flip->GetImageCount(), flip->GetMetadata(), DirectX::TEX_FR_FLIP_VERTICAL, *image);
 
 

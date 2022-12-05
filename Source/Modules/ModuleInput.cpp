@@ -59,7 +59,7 @@ update_status ModuleInput::Update()
             case SDL_MOUSEWHEEL:
                 if (sdlEvent.wheel.y > 0) //Scroll Up
                 {
-                    
+                    //llamar camera
                     mouseWheel = sdlEvent.wheel.x;
                 }
                 else if (sdlEvent.wheel.y < 0) //Scroll Down

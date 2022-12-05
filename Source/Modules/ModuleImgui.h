@@ -23,18 +23,17 @@ public:
 	bool CleanUp();
 	void LogConsole();
 	void About();
-	//void Configuration();
+	void Configuration();
 	void StyleImgui();
 	
 
 private:
 
-	const Uint8* keyboard = NULL;
 	void MainMenu();
 	bool exit_app = false;
 	bool consoleEnabled = true;
 	bool aboutEnabled = false;
-	bool configurationEnabled = true;
+	bool configurationEnabled = false;
 	
 };
 

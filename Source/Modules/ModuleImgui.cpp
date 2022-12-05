@@ -3,6 +3,7 @@
 #include "ModuleImgui.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
+
 #include "../lib/SDL/include/SDL.h"
 #include "../lib/imgui-docking/imgui.h"
 #include "../lib/imgui-docking/imgui_impl_sdl.h"
@@ -10,6 +11,8 @@
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
 ModuleImgui::ModuleImgui()
@@ -56,9 +59,11 @@ update_status ModuleImgui::PreUpdate()
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
 
+
 	MainMenu();
 	LogConsole();
-	//Configuration();
+	Configuration();
+	ImGui::GetIO().Framerate;
 	About();   
 
 	StyleImgui();
@@ -153,6 +158,7 @@ void ModuleImgui::LogConsole()
 			}
 			ImGui::EndChild();
 		}
+
 		ImGui::End();
 	}
 }
@@ -187,34 +193,29 @@ void ModuleImgui::About()
 	}
 }
 
-//void ModuleImgui::Configuration()
-//{
-//	if (configurationEnabled) {
-//
-//		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
-//		ImGui::SetNextWindowPos(ImVec2(400, 18), ImGuiCond_Once);
-//
-//		if (ImGui::Begin("Configuration")) {
-//			
-//			// FPS GRAPH
-//			if (ImGui::CollapsingHeader("Application"))
-//			{
-//				char title[25];
-//					sprintf_s(title, 25, "Framerate %.1f", logsFPS[FPSIndex]);
-//					ImGui::PlotHistogram("##framerate", &logsFPS[0], 100, FPSIndex, title, 0.0f, 100.0f, ImVec2(310, 100));
-//					sprintf_s(title, 25, "Miliseconds %.1f", logsMiliseconds[FPSIndex]);
-//					ImGui::PlotHistogram("##miliseconds", &logsMiliseconds[0], 100, FPSIndex, title, 0.0f, 40.0f, ImVec2(310, 100));
-//			}
-//
-//			//WINDOW OPTIONS
-//
-//			// HARDWARE
-//
-//		}
-//	}
-//	
-//		
-//}
+void ModuleImgui::Configuration()
+{
+	if (configurationEnabled) {
+
+		ImGui::SetNextWindowSize(ImVec2(1030, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(0, 10), ImGuiCond_Once);
+
+		if (ImGui::Begin("Application")) {
+
+			std::vector<float> fpsLog;
+			std::vector<float> msLog;
+
+			char title[25];
+			sprintf_s(title, 25, "Framerate %.1f", fpsLog[fpsLog.size() - 1]);
+			ImGui::PlotHistogram("##framerate", &fpsLog[0], fpsLog.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
+			sprintf_s(title, 25, "Milliseconds %0.1f", msLog[msLog.size() - 1]);
+			ImGui::PlotHistogram("#milliseconds", &msLog[0], msLog.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
+
+		}
+		ImGui::End();
+	}
+		
+}
 
 
 void ModuleImgui::StyleImgui()
@@ -225,3 +226,5 @@ void ModuleImgui::StyleImgui()
 	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
 	
 }
+
+
