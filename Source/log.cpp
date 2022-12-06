@@ -1,7 +1,7 @@
 #pragma once
 #include "Globals.h"
 #include "Application.h"
-#include "./Modules/ModuleImgui.h"
+#include "./Modules/ModuleEditor.h"
 
 
 using namespace std;

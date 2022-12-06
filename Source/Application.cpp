@@ -3,7 +3,7 @@
 #include "./Modules/ModuleWindow.h"
 #include "./Modules/ModuleRender.h"
 #include "./Modules/ModuleInput.h"
-#include "./Modules/ModuleImgui.h"
+#include "./Modules/ModuleEditor.h"
 #include "./Modules/ModuleProgram.h"
 #include "./Modules/ModuleDebugDraw.h"
 #include "./Modules/ModuleCamera.h"
@@ -23,9 +23,7 @@ Application::Application()
 	modules.push_back(textures = new ModuleTexture());
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(renderer = new ModuleRender());
-	modules.push_back(ImGui = new ModuleImgui());
-	
-	
+	modules.push_back(Editor = new ModuleEditor());
 	
 }
 

@@ -2,7 +2,7 @@
 #include "../Application.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
-#include "ModuleImgui.h"
+#include "ModuleEditor.h"
 
 ModuleInput::ModuleInput()
 {}

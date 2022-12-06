@@ -1,7 +1,7 @@
 #include "../Globals.h"
 #include "../Application.h"
 #include "ModuleTimer.h"
-#include "ModuleImgui.h"
+#include "ModuleEditor.h"
 #include "SDL.h"
 
 bool ModuleTimer::Init()

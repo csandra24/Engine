@@ -7,7 +7,7 @@
     <ClCompile Include="Modules\ModuleDebugDraw.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\ModuleImgui.cpp">
+    <ClCompile Include="Modules\ModuleEditor.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Modules\ModuleInput.cpp">
@@ -188,6 +188,7 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Mesh.cpp" />
+    <ClCompile Include="Panel\PanelConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\Module.h">
@@ -199,7 +200,7 @@
     <ClInclude Include="Modules\ModuleDebugDraw.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\ModuleImgui.h">
+    <ClInclude Include="Modules\ModuleEditor.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Modules\ModuleInput.h">
@@ -840,6 +841,8 @@
     <ClInclude Include="lib\assimp\include\assimp\XmlParser.h" />
     <ClInclude Include="lib\assimp\include\assimp\XMLTools.h" />
     <ClInclude Include="lib\assimp\include\assimp\ZipArchiveIOSystem.h" />
+    <ClInclude Include="Panel\Panel.h" />
+    <ClInclude Include="Panel\PanelConsole.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="lib">

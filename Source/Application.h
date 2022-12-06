@@ -9,7 +9,7 @@ class ModuleRender;
 class ModuleWindow;
 class ModuleTextures;
 class ModuleInput;
-class ModuleImgui;
+class ModuleEditor;
 class ModuleProgram;
 class ModulRenderExercise;
 class ModuleDebugDraw;
@@ -29,7 +29,6 @@ public:
 	bool CleanUp();
 
 	void RequestBrowser(const char* url) const;
-	//void LogGui(const char* log) const;
 
 
 public:
@@ -37,7 +36,7 @@ public:
 	ModuleWindow* window = nullptr;
 	ModuleTimer* timer = nullptr;
 	ModuleInput* input = nullptr;
-	ModuleImgui* ImGui = nullptr;
+	ModuleEditor* Editor = nullptr;
 	ModuleProgram* program = nullptr;
 	ModulRenderExercise* exercise = nullptr;
 	ModuleDebugDraw* draw = nullptr;
