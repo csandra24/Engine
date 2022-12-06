@@ -10,6 +10,9 @@
 #include <vector>
 
 class PanelConsole;
+class PanelAbout;
+class PanelConfiguration;
+class PanelProperties;
 
 class ModuleEditor : public Module
 {
@@ -24,21 +27,25 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
+
+	void MainMenu();
 	
 	bool exit_app = false;
 	bool consoleEnabled = true;
 	bool aboutEnabled = false;
-	bool configurationEnabled = false;
+	bool configurationEnabled = true;
+	bool propertiesEnabled = true;
 
 	PanelConsole* console = nullptr;
+	PanelAbout* about = nullptr;
+	PanelConfiguration* configuration = nullptr;
+	PanelProperties* properties = nullptr;
 
 
 private:
 	std::list<Panel*> panels;
-
-	void MainMenu();
-	void StyleImgui();
 	
+	void StyleImgui();
 	
 };
 

@@ -2,10 +2,12 @@
 #include "../Application.h"
 #include "Model.h"
 #include "../Modules/ModuleTexture.h"
+
 #include "../lib/assimp/include/assimp/ai_assert.h"
 #include "../lib/assimp/include/assimp/scene.h"
 #include "../lib/assimp/include/assimp/cimport.h"
 #include "../lib/assimp/include/assimp/postprocess.h"
+#include "../lib/MathGeoLib_Source/Math/float4x4.h"
 
 Model::Model(const char* file_name)
 {
@@ -34,11 +36,13 @@ void Model::Load(const char* file_name)
 		AVISO("Loading materials and meshes");
 		LoadMaterials(scene->mMaterials, scene->mNumMaterials);
 		LoadMesh(scene->mMeshes, scene->mNumMeshes);
+
 	}
 	else
 	{
 		AVISO("Error loading %s: %s", file_name, aiGetErrorString());
 	}
+
 }
 
 void Model::LoadMaterials(aiMaterial** aiMaterial, const unsigned int& numMaterials)

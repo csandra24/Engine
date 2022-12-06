@@ -14,6 +14,10 @@ public:
 	~Mesh();
 	void Draw(const std::vector<unsigned>& model_textures);
 
+	inline const int& GetNumVertices() { return numberVertices;}
+	inline const int& GetNumIndices() { return num_indices; }
+	inline const int& GetMaterialIndex() { return material_index;}
+
 private:
 	void LoadVBO(const aiMesh* mesh);
 	void LoadEBO(const aiMesh* mesh);

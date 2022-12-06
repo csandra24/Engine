@@ -20,6 +20,10 @@ public:
 
 	GLuint LoadTexture(const char* file_texture);
 
+	inline DirectX::ScratchImage* GetImage() const { return image; }
+	inline DirectX::TexMetadata GetMetadata() const { return metadata; }
+	
+
 private:
 
 	DirectX::ScratchImage *image;

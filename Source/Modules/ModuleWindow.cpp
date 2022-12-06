@@ -24,15 +24,26 @@ bool ModuleWindow::Init()
 	}
 	else
 	{
-		//Create window TODO 3
+
 		int width = SCREEN_WIDTH;
 		int height = SCREEN_HEIGHT;
 		Uint32 flags = SDL_WINDOW_SHOWN |  SDL_WINDOW_OPENGL;
 
 		if(FULLSCREEN == true)
 		{
-			flags |= SDL_WINDOW_FULLSCREEN;
+			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
+
+		else if (BORDERLESS == true)
+		{
+			flags |= SDL_WINDOW_BORDERLESS;
+		}
+
+		else if (RESIZABLE == true)
+		{
+			flags |= SDL_WINDOW_RESIZABLE;
+		}
+		
 
 		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
@@ -67,4 +78,42 @@ bool ModuleWindow::CleanUp()
 	SDL_Quit();
 	return true;
 }
+
+
+void ModuleWindow::SetResizable(bool resizable)
+{
+	if (resizable)
+	{
+		SDL_SetWindowResizable(window, SDL_TRUE);
+	}
+	else
+	{
+		SDL_SetWindowResizable(window, SDL_FALSE);
+	}
+}
+
+void ModuleWindow::SetSize(int width, int height)
+{
+	int display_index = SDL_GetWindowDisplayIndex(window);
+	SDL_SetWindowSize(window, width, height);
+	SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED_DISPLAY(display_index), SDL_WINDOWPOS_CENTERED_DISPLAY(display_index));
+}
+
+int ModuleWindow::GetWidth() const
+{
+	int width;
+	int height;
+	SDL_GetWindowSize(window, &width, &height);
+	return width;
+}
+
+int ModuleWindow::GetHeight() const
+{
+	int width;
+	int height;
+	SDL_GetWindowSize(window, &width, &height);
+	return height;
+}
+
+
 

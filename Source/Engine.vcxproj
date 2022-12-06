@@ -194,7 +194,10 @@
     <ClCompile Include="lib\MathGeoLib_Source\Math\SSEMath.cpp" />
     <ClCompile Include="lib\MathGeoLib_Source\Math\TransformOps.cpp" />
     <ClCompile Include="lib\MathGeoLib_Source\Time\Clock.cpp" />
+    <ClCompile Include="Panel\PanelAbout.cpp" />
+    <ClCompile Include="Panel\PanelConfiguration.cpp" />
     <ClCompile Include="Panel\PanelConsole.cpp" />
+    <ClCompile Include="Panel\PanelProperties.cpp" />
     <ClCompile Include="Scene\Mesh.cpp" />
     <ClCompile Include="Scene\Model.cpp" />
     <ClCompile Include="Modules\ModuleCamera.cpp" />
@@ -470,8 +473,11 @@
     <ClInclude Include="lib\SDL\include\SDL_version.h" />
     <ClInclude Include="lib\SDL\include\SDL_video.h" />
     <ClInclude Include="lib\SDL\include\SDL_vulkan.h" />
+    <ClInclude Include="Panel\PanelAbout.h" />
+    <ClInclude Include="Panel\PanelConfiguration.h" />
     <ClInclude Include="Panel\PanelConsole.h" />
     <ClInclude Include="Panel\Panel.h" />
+    <ClInclude Include="Panel\PanelProperties.h" />
     <ClInclude Include="Scene\Mesh.h" />
     <ClInclude Include="Scene\Model.h" />
     <ClInclude Include="Modules\Module.h" />

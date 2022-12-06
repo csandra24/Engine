@@ -7,10 +7,14 @@
 #include <iostream>
 
 #define AVISO(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
+#define FPSLOGSIZE 100
 
 void log(const char file[], int line, const char* format, ...);
 
 extern std::string logs;
+extern int fpsLogIndex;
+extern float fpsLog[];
+extern float msLog[];
 
 enum update_status
 {
@@ -36,6 +40,8 @@ enum class KeyState
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 620
 #define FULLSCREEN false
+#define BORDERLESS false
+#define RESIZABLE false
 #define VSYNC true
 #define TITLE "Super Awesome Engine"
 

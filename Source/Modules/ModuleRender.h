@@ -23,8 +23,13 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
-	void WindowResized(unsigned width, unsigned height);
+
 	void* context;
+	
+	inline Model* GetModel() const { return model; }
+
+	void WindowResized(unsigned width, unsigned height);
+	void SetVSync(bool vsync);
 
 private:
 

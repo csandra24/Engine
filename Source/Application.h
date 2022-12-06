@@ -11,7 +11,6 @@ class ModuleTextures;
 class ModuleInput;
 class ModuleEditor;
 class ModuleProgram;
-class ModulRenderExercise;
 class ModuleDebugDraw;
 class ModuleCamera;
 class ModuleTimer;
@@ -30,6 +29,11 @@ public:
 
 	void RequestBrowser(const char* url) const;
 
+	//Configuration Panel
+	int max_fps = 60;
+	bool limit_framerate = true;
+	bool vsync = true;
+
 
 public:
 	ModuleRender* renderer = nullptr;
@@ -38,7 +42,6 @@ public:
 	ModuleInput* input = nullptr;
 	ModuleEditor* Editor = nullptr;
 	ModuleProgram* program = nullptr;
-	ModulRenderExercise* exercise = nullptr;
 	ModuleDebugDraw* draw = nullptr;
 	ModuleCamera* camera = nullptr;
 	ModuleTexture* textures = nullptr;

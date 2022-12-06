@@ -6,6 +6,9 @@
 #include "ModuleWindow.h"
 
 #include "../Panel/PanelConsole.h"
+#include "../Panel/PanelAbout.h"
+#include "../Panel/PanelConfiguration.h"
+#include "../Panel/PanelProperties.h"
 
 #include "../lib/SDL/include/SDL.h"
 #include "../lib/imgui-docking/imgui.h"
@@ -53,6 +56,10 @@ bool ModuleEditor::Start()
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer->context);
 	ImGui_ImplOpenGL3_Init();
 
+
+	panels.push_back(about = new PanelAbout());
+	panels.push_back(configuration = new PanelConfiguration());
+	panels.push_back(properties = new PanelProperties());
 	panels.push_back(console = new PanelConsole());
 
 	return true;
@@ -93,6 +100,9 @@ update_status ModuleEditor::PostUpdate()
 	ImGui::UpdatePlatformWindows();
 	ImGui::RenderPlatformWindowsDefault();
 	SDL_GL_MakeCurrent(App->window->window, App->renderer->context);
+
+	SDL_GL_SwapWindow(App->window->window);
+
 	
 	return UPDATE_CONTINUE;
 }
@@ -113,8 +123,6 @@ bool ModuleEditor::CleanUp()
 void ModuleEditor::MainMenu() {
 	// Main Menu
 	if (ImGui::BeginMainMenuBar()) {
-
-		if (ImGui::BeginMenu("File")) {	}
 
 		if (ImGui::BeginMenu("Help"))
 		{
@@ -138,6 +146,7 @@ void ModuleEditor::MainMenu() {
 			ImGui::MenuItem("Console", "", &consoleEnabled);
 			ImGui::MenuItem("About", "", &aboutEnabled);
 			ImGui::MenuItem("Configuration", "", &configurationEnabled);
+			ImGui::MenuItem("Properties", "", &propertiesEnabled);
 
 			ImGui::EndMenu();
 		}
@@ -153,65 +162,6 @@ void ModuleEditor::MainMenu() {
 	}
 
 }
-
-/*void ModuleEditor::LogConsole()
-{
-	
-}
-
-void ModuleEditor::About()
-{   
-	if (aboutEnabled) {
-		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(0, 18), ImGuiCond_Once);
-
-		if (ImGui::Begin("About"))
-		{
-			ImGui::Text(TITLE);
-			ImGui::Text("");
-			ImGui::Text("Description:");
-			ImGui::Text("Name Engine");
-			ImGui::Text("");
-			ImGui::Text("Developed by Sandra Campana");
-			ImGui::Text("");
-			ImGui::Text("Libraries used:");
-			ImGui::Text("- OpenGL");
-			ImGui::Text("- MathGeoLib");
-			ImGui::Text("- SDL");
-			ImGui::Text("- ImGui");
-			ImGui::Text("- Glew");
-			ImGui::Text("- DirectXTex");
-			ImGui::Text("- Assimp");
-			ImGui::Text("");
-			ImGui::Text("MIT LICENSE | Copyright (c) 2022 Sandra Campana");
-		}
-		ImGui::End();
-	}
-}
-
-void ModuleEditor::Configuration()
-{
-	if (configurationEnabled) {
-
-		ImGui::SetNextWindowSize(ImVec2(1030, 100), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(0, 10), ImGuiCond_Once);
-
-		if (ImGui::Begin("Application")) {
-
-			std::vector<float> fpsLog;
-			std::vector<float> msLog;
-
-			char title[25];
-			sprintf_s(title, 25, "Framerate %.1f", fpsLog[fpsLog.size() - 1]); 
-			ImGui::PlotHistogram("##framerate", &fpsLog[0], fpsLog.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
-			sprintf_s(title, 25, "Milliseconds %0.1f", msLog[msLog.size() - 1]);
-			ImGui::PlotHistogram("#milliseconds", &msLog[0], msLog.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
-
-		}
-		ImGui::End();
-	}
-		
-}*/
 
 
 void ModuleEditor::StyleImgui()

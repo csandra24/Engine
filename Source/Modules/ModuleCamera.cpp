@@ -4,6 +4,7 @@
 #include "ModuleTimer.h"
 #include "ModuleInput.h"
 #include "ModuleDebugDraw.h"
+#include "ModuleWindow.h"
 
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 #include "../lib/SDL/include/SDL.h"
@@ -24,7 +25,7 @@ bool ModuleCamera::Init()
 {
 	AVISO("Creating camera");
 
-	aspectRatio = float(SCREEN_WIDTH) / float(SCREEN_HEIGHT);
+	aspectRatio = float(App->window->GetWidth()) / float(App->window->GetHeight());
 
 	frustum->SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum->SetViewPlaneDistances(0.1f, 1000.0f);
@@ -50,6 +51,8 @@ update_status ModuleCamera::Update()
 	float deltaTime = App->timer->GetDeltaTime();
 	const float2& mouseMotion = App->input->GetMouseMotion();
 	const float mouseWheel = App->input->GetMouseWheel();
+
+	frustum->SetHorizontalFovAndAspectRatio(frustum->HorizontalFov(), aspectRatio);
 
 	float finalmoveSpeed = movementSpeed;
 
@@ -174,12 +177,12 @@ float4x4 ModuleCamera::GetViewMatrix() const
 
 void ModuleCamera::SetHorizontalFOV(float Fov)
 {
-	frustum->SetHorizontalFovAndAspectRatio(Fov, frustum->AspectRatio());
+	frustum->SetHorizontalFovAndAspectRatio(Fov, aspectRatio);
 }
 
 void ModuleCamera::SetVerticalFOV(float Fov)
 {
-	frustum->SetHorizontalFovAndAspectRatio(Fov, frustum->AspectRatio());
+	frustum->SetHorizontalFovAndAspectRatio(Fov, aspectRatio);
 }
 
 void ModuleCamera::SetPlaneDistance(float Near, float Far)
@@ -201,5 +204,6 @@ void ModuleCamera::WindowResized(unsigned width, unsigned height)
 {
 	frustum->SetHorizontalFovAndAspectRatio(frustum->HorizontalFov(), width / height);
 }
+
 
 

@@ -62,7 +62,7 @@ bool ModuleRender::Start()
 
 update_status ModuleRender::PreUpdate()
 {
-	//TODO 4
+
 	int w, h;
 	SDL_GetWindowSize(App->window->window, &w, &h);
 
@@ -80,13 +80,13 @@ update_status ModuleRender::Update()
 
 	model->Draw();
 	App->draw->Draw(App->camera->GetViewMatrix(), App->camera->GetProjectionMatrix(), SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleRender::PostUpdate()
 {
-	//TODO5
-	SDL_GL_SwapWindow(App->window->window);
+	//SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 }
 
@@ -108,3 +108,7 @@ void ModuleRender::WindowResized(unsigned width, unsigned height)
 	App->camera->WindowResized(width, height);
 }
 
+void ModuleRender::SetVSync(bool vsync)
+{
+	SDL_GL_SetSwapInterval(vsync);
+}
