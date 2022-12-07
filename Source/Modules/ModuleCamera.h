@@ -46,11 +46,6 @@ public:
 	void WindowResized(unsigned width, unsigned height);
 
 
-
-public:
-
-	float movementSpeed = 10.0f;
-	float rotate = 25.0f;
 	
 
 private:
@@ -61,6 +56,11 @@ private:
 	float aspectRatio;
 
 	float focus_distance = 0.0f;
+	float zoom = 5.0f;
+	float movementSpeed = 10.0f;
+	float rotate = 25.0f;
+
+	void Rotate(const float3x3& rotationCamera);
 
 };
 

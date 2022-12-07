@@ -3,6 +3,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleEditor.h"
+#include "ModuleCamera.h"
 
 ModuleInput::ModuleInput()
 {}
@@ -33,7 +34,8 @@ update_status ModuleInput::Update()
     SDL_Event sdlEvent;
     
     mouseMotion = { 0,0 };
-    mouseWheel = 0;
+    mouseWheel = { 0, 0 };
+    mouseWheelIn = 0;
 
     while (SDL_PollEvent(&sdlEvent) != 0)
     {
@@ -57,24 +59,16 @@ update_status ModuleInput::Update()
                 break;
 
             case SDL_MOUSEWHEEL:
-                if (sdlEvent.wheel.y > 0) //Scroll Up
-                {
-                    //llamar camera
-                    mouseWheel = sdlEvent.wheel.x;
-                }
-                else if (sdlEvent.wheel.y < 0) //Scroll Down
-                {
-                    
-                    mouseWheel = sdlEvent.wheel.y;
-                }
+                mouseWheel.y = (float)sdlEvent.wheel.y;
+                WheelMove = true; 
                 break;
 
             case SDL_MOUSEBUTTONUP:
-                mouseButtons[sdlEvent.button.button - 1] = KeyState::KEY_UP;
+                mouseButtons[sdlEvent.button.button - 1] = MouseButton::UP;
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
-                mouseButtons[sdlEvent.button.button - 1] = KeyState::KEY_DOWN;
+                mouseButtons[sdlEvent.button.button - 1] = MouseButton::DOWN;
                 break;
 
             case SDL_DROPFILE:

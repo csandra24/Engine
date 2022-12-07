@@ -50,7 +50,8 @@ update_status ModuleCamera::Update()
 {
 	float deltaTime = App->timer->GetDeltaTime();
 	const float2& mouseMotion = App->input->GetMouseMotion();
-	const float mouseWheel = App->input->GetMouseWheel();
+	const float2& mouseWheel = App->input->GetMouseWheel();
+	bool mouseWheelMove = App->input->GetMouseWheelMove();
 
 	frustum->SetHorizontalFovAndAspectRatio(frustum->HorizontalFov(), aspectRatio);
 
@@ -139,16 +140,19 @@ update_status ModuleCamera::Update()
 		frustum->WorldRight();
 	}
 
-
-	// Mouse Wheel (Zoom)
-	if (mouseWheel)
+	//Move camera with mouse
+	if (App->input->GetMouseButton(1))
 	{
-		
+		Rotate(float3x3::RotateY((mouseMotion.x * 0.1f) * rotate * DEGTORAD * deltaTime));
+		Rotate(float3x3::RotateAxisAngle(frustum->WorldRight().Normalized(), (mouseMotion.y * 0.1f) * rotate * DEGTORAD * deltaTime));
 	}
 
-
-
-
+	// Zoom In and Out
+	if (mouseWheelMove)
+	{
+		frustum->Front().Normalized()*( zoom* deltaTime* mouseWheel.y);
+		App->input->SetMouseWheel(true);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -163,7 +167,6 @@ bool ModuleCamera::CleanUp()
     delete frustum;
 	return true;
 }
-
 
 float4x4 ModuleCamera::GetProjectionMatrix() const 
 {
@@ -204,6 +207,15 @@ void ModuleCamera::WindowResized(unsigned width, unsigned height)
 {
 	frustum->SetHorizontalFovAndAspectRatio(frustum->HorizontalFov(), width / height);
 }
+
+void ModuleCamera::Rotate(const float3x3& rotationCamera)
+{
+	vec frontBack = frustum->Front().Normalized();
+	frustum->SetFront(rotationCamera.MulDir(frontBack));
+	vec UpDown = frustum->Up().Normalized();
+	frustum->SetUp(rotationCamera.MulDir(UpDown));
+}
+
 
 
 
