@@ -76,6 +76,11 @@ update_status ModuleInput::Update()
             case SDL_MOUSEBUTTONDOWN:
                 mouseButtons[sdlEvent.button.button - 1] = KeyState::KEY_DOWN;
                 break;
+
+            case SDL_DROPFILE:
+                AVISO("File dropped");
+                App->renderer->NewModel(sdlEvent.drop.file);
+                break;
         }
     }
 

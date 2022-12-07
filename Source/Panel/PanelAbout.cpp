@@ -10,7 +10,7 @@
 #include "../lib/imgui-docking/imgui_impl_opengl3.h"
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 
-static ImVec4 pink = ImVec4(0.80f, 0.85f, 0.3f, 1.0f);
+static ImVec4 pink = ImVec4(1.0f, 0.0f, 0.40f, 1.0f);
 
 PanelAbout::PanelAbout()
 {
@@ -30,14 +30,14 @@ void PanelAbout::Draw()
 
 		if (ImGui::Begin("About"))
 		{
-			ImGui::Text(TITLE);
+			ImGui::TextColored(pink, TITLE);
 			ImGui::Text("");
 
 			ImGui::Text("Description:");
 			ImGui::Text("Name Engine");
 			ImGui::Text("");
 
-			ImGui::Text("Developed by Sandra Campana");
+			ImGui::TextColored(pink, "Developed by Sandra Campana");
 			ImGui::Text("");
 
 			ImGui::Text("Libraries used:");

@@ -13,7 +13,7 @@
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 
 
-static ImVec4 pink = ImVec4(0.80f, 0.85f, 0.3f, 1.0f);
+static ImVec4 pink = ImVec4(1.0f, 0.0f, 0.40f, 1.0f);
 
 
 PanelConfiguration::PanelConfiguration()

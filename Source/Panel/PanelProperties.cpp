@@ -13,7 +13,7 @@
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 #include "../lib/MathGeoLib_Source/Math/float4x4.h"
 
-static ImVec4 pink = ImVec4(0.80f, 0.85f, 0.3f, 1.0f);
+static ImVec4 pink = ImVec4(1.0f, 0.0f, 0.40f, 1.0f);
 
 PanelProperties::PanelProperties()
 {
@@ -28,15 +28,14 @@ PanelProperties::~PanelProperties()
 void PanelProperties::Draw()
 {
 	if (App->Editor->propertiesEnabled) {
-		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(0, 18), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(260, 200), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(700, 18), ImGuiCond_Once);
 
 		if (ImGui::Begin("Properties"))
 		{
 			if (ImGui::CollapsingHeader("Transformation"))
 			{
-			
-
+				
 			}
 
 			if (ImGui::CollapsingHeader("Geometry"))

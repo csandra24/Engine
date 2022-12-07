@@ -23,6 +23,7 @@ public:
 	update_status Update();
 	update_status PostUpdate();
 	bool CleanUp();
+	void NewModel(const char* file_name);
 
 	void* context;
 	
