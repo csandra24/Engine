@@ -30,7 +30,7 @@ void PanelConfiguration::Draw()
 {
 	if (App->Editor->configurationEnabled) {
 
-		ImGui::SetNextWindowSize(ImVec2(270, 550), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(300, 550), ImGuiCond_Once);
 		ImGui::SetNextWindowPos(ImVec2(0, 18), ImGuiCond_Once);
 
 		if (ImGui::Begin("Configuration"))

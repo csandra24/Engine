@@ -34,7 +34,7 @@ void PanelAbout::Draw()
 			ImGui::Text("");
 
 			ImGui::Text("Description:");
-			ImGui::Text("Name Engine");
+			ImGui::Text("This engine is the result of a lot of effort and dedication for the master in ADVANCED PROGRAMMING FOR AAA VIDEO GAMES.");
 			ImGui::Text("");
 
 			ImGui::TextColored(pink, "Developed by Sandra Campana");

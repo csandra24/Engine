@@ -37,12 +37,12 @@ enum class KeyState
 #define RADTODEG 1.0f / DEGTORAD
 
 // Configuration -----------
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 620
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 800
 #define FULLSCREEN false
 #define BORDERLESS false
 #define RESIZABLE false
 #define VSYNC true
-#define TITLE "Super Awesome Engine"
+#define TITLE "Super Effort Engine"
 
 #endif

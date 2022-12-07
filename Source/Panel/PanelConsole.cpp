@@ -24,8 +24,8 @@ void PanelConsole::Draw()
 {
 	if (App->Editor->consoleEnabled) {
 
-		ImGui::SetNextWindowSize(ImVec2(1030, 100), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(0, 530), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(1200, 80), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(0, 690), ImGuiCond_Once);
 
 		if (ImGui::Begin("Console")) {
 			ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);

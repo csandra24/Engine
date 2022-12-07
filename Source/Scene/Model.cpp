@@ -71,3 +71,4 @@ void Model::LoadMesh(aiMesh** aiMesh, const unsigned int& NumMeshes)
 	}
 
 }
+

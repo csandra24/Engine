@@ -18,7 +18,10 @@ public:
 	void LoadMesh(aiMesh** aiMesh, const unsigned int& NumMeshes);
 	void Draw();
 
+
 	inline std::vector<Mesh*> GetMeshes() const { return meshes; }
+
+
 
 private:
 	std::vector<GLuint> materials;

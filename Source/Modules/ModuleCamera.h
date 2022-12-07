@@ -3,6 +3,10 @@
 #define _MODULECAMERA_
 
 #include "Module.h"
+#include "../Globals.h"
+#include "../Application.h"
+#include "../Scene/Model.h"
+
 #include "../lib/MathGeoLib_Source/Geometry/Frustum.h"
 #include "../lib/MathGeoLib_Source/Math/float3x3.h"
 
@@ -44,9 +48,8 @@ public:
 
 	void LookAt(const float& x, const float& y, const float& z);
 	void WindowResized(unsigned width, unsigned height);
+	void ResetModelMat();
 
-
-	
 
 private:
 

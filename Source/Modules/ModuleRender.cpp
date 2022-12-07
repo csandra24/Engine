@@ -109,6 +109,7 @@ void ModuleRender::NewModel(const char* file_path)
 	delete model;
 	model = new Model(file_path);
 
+
 }
 
 void ModuleRender::WindowResized(unsigned width, unsigned height)

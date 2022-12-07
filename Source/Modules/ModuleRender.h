@@ -26,6 +26,7 @@ public:
 	void NewModel(const char* file_name);
 
 	void* context;
+
 	
 	inline Model* GetModel() const { return model; }
 

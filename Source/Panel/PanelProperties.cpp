@@ -29,14 +29,10 @@ void PanelProperties::Draw()
 {
 	if (App->Editor->propertiesEnabled) {
 		ImGui::SetNextWindowSize(ImVec2(260, 200), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(700, 18), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(940, 18), ImGuiCond_Once);
 
 		if (ImGui::Begin("Properties"))
 		{
-			if (ImGui::CollapsingHeader("Transformation"))
-			{
-				
-			}
 
 			if (ImGui::CollapsingHeader("Geometry"))
 			{

@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleDebugDraw.h"
 #include "ModuleWindow.h"
+#include "ModuleRender.h"
 
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 #include "../lib/SDL/include/SDL.h"
@@ -215,7 +216,5 @@ void ModuleCamera::Rotate(const float3x3& rotationCamera)
 	vec UpDown = frustum->Up().Normalized();
 	frustum->SetUp(rotationCamera.MulDir(UpDown));
 }
-
-
 
 
