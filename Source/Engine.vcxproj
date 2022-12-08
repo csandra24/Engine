@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -79,7 +79,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,16 +97,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\lib\glfw\include\GLFW;.\lib\SDL\include;.\lib\glew-2.1.0\include\GL;.\lib\DirectXTex;.\lib\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4996;26495;26812;26451;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>.\lib\glfw\include\GLFW;.\lib\SDL\include;.\lib\glew-2.1.0\include\GL;.\lib\DirectXTex;.\lib\assimp\include;.\lib\MathGeoLib_Source</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996;26495;26812;26451;4244</DisableSpecificWarnings>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DirectXTex.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;sdl2.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DirectXTex.lib;assimp-vc142-mt.lib;SDL2.lib;SDL2main.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>.\lib\glew-2.1.0\lib\Release\x64;.\lib\SDL\lib\x64;.\lib\glfw\src;.\lib\DirectXTex\DirectXTex\Bin\Desktop_2019_Win10\x64\Debug;.\lib\assimp</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -130,17 +130,24 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\SDL\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\lib\glfw\include\GLFW;.\lib\SDL\include;.\lib\glew-2.1.0\include\GL;.\lib\DirectXTex;.\lib\assimp\include;.\lib\MathGeoLib_Source</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996;26495;26812;26451;4244</DisableSpecificWarnings>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>.\lib\glew-2.1.0\lib\Release\x64;.\lib\SDL\lib\x64;.\lib\glfw\src;.\lib\DirectXTex\DirectXTex\Bin\Desktop_2019_Win10\x64\Release;.\lib\assimp</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DirectXTex.lib;assimp-vc142-mt.lib;SDL2.lib;SDL2main.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -217,92 +224,8 @@
     <ClInclude Include="Debug_Draw\debugdraw.h" />
     <ClInclude Include="Debug_Draw\debug_draw.hpp" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="lib\assimp\include\assimp\aabb.h" />
-    <ClInclude Include="lib\assimp\include\assimp\ai_assert.h" />
-    <ClInclude Include="lib\assimp\include\assimp\anim.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Base64.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\BaseImporter.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Bitmap.h" />
-    <ClInclude Include="lib\assimp\include\assimp\BlobIOSystem.h" />
-    <ClInclude Include="lib\assimp\include\assimp\ByteSwapper.h" />
-    <ClInclude Include="lib\assimp\include\assimp\camera.h" />
-    <ClInclude Include="lib\assimp\include\assimp\cexport.h" />
-    <ClInclude Include="lib\assimp\include\assimp\cfileio.h" />
-    <ClInclude Include="lib\assimp\include\assimp\cimport.h" />
-    <ClInclude Include="lib\assimp\include\assimp\ColladaMetaData.h" />
-    <ClInclude Include="lib\assimp\include\assimp\color4.h" />
-    <ClInclude Include="lib\assimp\include\assimp\commonMetaData.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Compiler\poppack1.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Compiler\pstdint.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Compiler\pushpack1.h" />
-    <ClInclude Include="lib\assimp\include\assimp\config.h" />
-    <ClInclude Include="lib\assimp\include\assimp\CreateAnimMesh.h" />
-    <ClInclude Include="lib\assimp\include\assimp\DefaultIOStream.h" />
-    <ClInclude Include="lib\assimp\include\assimp\DefaultIOSystem.h" />
-    <ClInclude Include="lib\assimp\include\assimp\DefaultLogger.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\defs.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Exceptional.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Exporter.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\fast_atof.h" />
-    <ClInclude Include="lib\assimp\include\assimp\GenericProperty.h" />
-    <ClInclude Include="lib\assimp\include\assimp\GltfMaterial.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Hash.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Importer.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\importerdesc.h" />
-    <ClInclude Include="lib\assimp\include\assimp\IOStream.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\IOStreamBuffer.h" />
-    <ClInclude Include="lib\assimp\include\assimp\IOSystem.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\light.h" />
-    <ClInclude Include="lib\assimp\include\assimp\LineSplitter.h" />
-    <ClInclude Include="lib\assimp\include\assimp\LogAux.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Logger.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\LogStream.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\material.h" />
-    <ClInclude Include="lib\assimp\include\assimp\MathFunctions.h" />
-    <ClInclude Include="lib\assimp\include\assimp\matrix3x3.h" />
-    <ClInclude Include="lib\assimp\include\assimp\matrix4x4.h" />
-    <ClInclude Include="lib\assimp\include\assimp\MemoryIOWrapper.h" />
-    <ClInclude Include="lib\assimp\include\assimp\mesh.h" />
-    <ClInclude Include="lib\assimp\include\assimp\metadata.h" />
-    <ClInclude Include="lib\assimp\include\assimp\NullLogger.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\ObjMaterial.h" />
-    <ClInclude Include="lib\assimp\include\assimp\ParsingUtils.h" />
-    <ClInclude Include="lib\assimp\include\assimp\pbrmaterial.h" />
-    <ClInclude Include="lib\assimp\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
-    <ClInclude Include="lib\assimp\include\assimp\port\AndroidJNI\BundledAssetIOSystem.h" />
-    <ClInclude Include="lib\assimp\include\assimp\postprocess.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Profiler.h" />
-    <ClInclude Include="lib\assimp\include\assimp\ProgressHandler.hpp" />
-    <ClInclude Include="lib\assimp\include\assimp\qnan.h" />
-    <ClInclude Include="lib\assimp\include\assimp\quaternion.h" />
-    <ClInclude Include="lib\assimp\include\assimp\RemoveComments.h" />
-    <ClInclude Include="lib\assimp\include\assimp\scene.h" />
-    <ClInclude Include="lib\assimp\include\assimp\SceneCombiner.h" />
-    <ClInclude Include="lib\assimp\include\assimp\SGSpatialSort.h" />
-    <ClInclude Include="lib\assimp\include\assimp\SkeletonMeshBuilder.h" />
-    <ClInclude Include="lib\assimp\include\assimp\SmallVector.h" />
-    <ClInclude Include="lib\assimp\include\assimp\SmoothingGroups.h" />
-    <ClInclude Include="lib\assimp\include\assimp\SpatialSort.h" />
-    <ClInclude Include="lib\assimp\include\assimp\StandardShapes.h" />
-    <ClInclude Include="lib\assimp\include\assimp\StreamReader.h" />
-    <ClInclude Include="lib\assimp\include\assimp\StreamWriter.h" />
-    <ClInclude Include="lib\assimp\include\assimp\StringComparison.h" />
-    <ClInclude Include="lib\assimp\include\assimp\StringUtils.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Subdivision.h" />
-    <ClInclude Include="lib\assimp\include\assimp\texture.h" />
-    <ClInclude Include="lib\assimp\include\assimp\TinyFormatter.h" />
-    <ClInclude Include="lib\assimp\include\assimp\types.h" />
-    <ClInclude Include="lib\assimp\include\assimp\vector2.h" />
-    <ClInclude Include="lib\assimp\include\assimp\vector3.h" />
-    <ClInclude Include="lib\assimp\include\assimp\version.h" />
-    <ClInclude Include="lib\assimp\include\assimp\Vertex.h" />
-    <ClInclude Include="lib\assimp\include\assimp\XmlParser.h" />
-    <ClInclude Include="lib\assimp\include\assimp\XMLTools.h" />
-    <ClInclude Include="lib\assimp\include\assimp\ZipArchiveIOSystem.h" />
-    <ClInclude Include="lib\glew-2.1.0\include\GL\eglew.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\glew.h" />
     <ClInclude Include="lib\glew-2.1.0\include\GL\glxew.h" />
-    <ClInclude Include="lib\glew-2.1.0\include\GL\wglew.h" />
     <ClInclude Include="lib\imgui-docking\imconfig.h" />
     <ClInclude Include="lib\imgui-docking\imgui.h" />
     <ClInclude Include="lib\imgui-docking\imgui_impl_opengl3.h" />
@@ -387,8 +310,6 @@
     <ClInclude Include="lib\MathGeoLib_Source\Math\TransformOps.h" />
     <ClInclude Include="lib\MathGeoLib_Source\Math\vec2d.h" />
     <ClInclude Include="lib\MathGeoLib_Source\Time\Clock.h" />
-    <ClInclude Include="lib\SDL\include\begin_code.h" />
-    <ClInclude Include="lib\SDL\include\close_code.h" />
     <ClInclude Include="lib\SDL\include\SDL.h" />
     <ClInclude Include="lib\SDL\include\SDL_assert.h" />
     <ClInclude Include="lib\SDL\include\SDL_atomic.h" />
@@ -492,24 +413,11 @@
     <ClInclude Include="Modules\ModuleWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="lib\assimp\include\assimp\color4.inl" />
-    <None Include="lib\assimp\include\assimp\material.inl" />
-    <None Include="lib\assimp\include\assimp\matrix3x3.inl" />
-    <None Include="lib\assimp\include\assimp\matrix4x4.inl" />
-    <None Include="lib\assimp\include\assimp\quaternion.inl" />
-    <None Include="lib\assimp\include\assimp\SmoothingGroups.inl" />
-    <None Include="lib\assimp\include\assimp\vector2.inl" />
-    <None Include="lib\assimp\include\assimp\vector3.inl" />
-    <None Include="lib\glew-2.1.0\doc\advanced.html" />
-    <None Include="lib\glew-2.1.0\doc\basic.html" />
-    <None Include="lib\glew-2.1.0\doc\build.html" />
-    <None Include="lib\glew-2.1.0\doc\credits.html" />
     <None Include="lib\glew-2.1.0\doc\glew.html" />
     <None Include="lib\glew-2.1.0\doc\glxew.html" />
     <None Include="lib\glew-2.1.0\doc\index.html" />
     <None Include="lib\glew-2.1.0\doc\install.html" />
     <None Include="lib\glew-2.1.0\doc\log.html" />
-    <None Include="lib\glew-2.1.0\doc\wglew.html" />
     <None Include="lib\MathGeoLib_Source\Geometry\KDTree.inl" />
     <None Include="lib\MathGeoLib_Source\Geometry\QuadTree.inl" />
     <None Include="lib\MathGeoLib_Source\Geometry\TriangleMesh_IntersectRay_AVX.inl" />

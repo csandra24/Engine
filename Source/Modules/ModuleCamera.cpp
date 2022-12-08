@@ -141,7 +141,7 @@ update_status ModuleCamera::Update()
 		frustum->WorldRight();
 	}
 
-	//Move camera with mouse
+	//Move camera with mouse || I have tried to make the camera work better, but I can't :((
 	if (App->input->GetMouseButton(1))
 	{
 		Rotate(float3x3::RotateY((mouseMotion.x * 0.1f) * rotate * DEGTORAD * deltaTime));
@@ -152,7 +152,7 @@ update_status ModuleCamera::Update()
 	if (mouseWheelMove)
 	{
 		frustum->Front().Normalized()*( zoom* deltaTime* mouseWheel.y);
-		App->input->SetMouseWheel(true);
+		App->input->SetMouseWheel(false);
 	}
 
 	return update_status::UPDATE_CONTINUE;

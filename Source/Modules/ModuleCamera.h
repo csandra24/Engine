@@ -48,7 +48,6 @@ public:
 
 	void LookAt(const float& x, const float& y, const float& z);
 	void WindowResized(unsigned width, unsigned height);
-	void ResetModelMat();
 
 
 private:
@@ -61,7 +60,7 @@ private:
 	float focus_distance = 0.0f;
 	float zoom = 5.0f;
 	float movementSpeed = 10.0f;
-	float rotate = 25.0f;
+	float rotate = 6.0f;
 
 	void Rotate(const float3x3& rotationCamera);
 

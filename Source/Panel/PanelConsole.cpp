@@ -24,7 +24,7 @@ void PanelConsole::Draw()
 {
 	if (App->Editor->consoleEnabled) {
 
-		ImGui::SetNextWindowSize(ImVec2(1200, 80), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(1200, 115), ImGuiCond_Once);
 		ImGui::SetNextWindowPos(ImVec2(0, 690), ImGuiCond_Once);
 
 		if (ImGui::Begin("Console")) {

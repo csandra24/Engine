@@ -41,12 +41,17 @@ public:
 	PanelConfiguration* configuration = nullptr;
 	PanelProperties* properties = nullptr;
 
+	const std::vector<float>& GetFps() const { return maxFPS; }
+	const std::vector<float>& GetMs() const { return msFPS; }
+
 
 private:
 	std::list<Panel*> panels;
 	
 	void StyleImgui();
 	
+	std::vector<float> maxFPS;
+	std::vector<float> msFPS;
 };
 
 #endif

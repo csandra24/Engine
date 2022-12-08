@@ -30,9 +30,7 @@ public:
 	void RequestBrowser(const char* url) const;
 
 	//Configuration Panel
-	int max_fps = 60;
-	bool limit_framerate = true;
-	bool vsync = true;
+	bool vsync = false;
 
 
 public:

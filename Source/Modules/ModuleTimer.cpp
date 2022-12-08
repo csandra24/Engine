@@ -2,12 +2,12 @@
 #include "../Application.h"
 #include "ModuleTimer.h"
 #include "ModuleEditor.h"
-#include "SDL.h"
+#include "Time/Clock.h"
 
 bool ModuleTimer::Init()
 {
 	AVISO("Time starts");
-	previousTime = SDL_GetTicks();
+	previousTime = float(Clock::Time());
 	return true;
 }
 
@@ -18,9 +18,17 @@ update_status ModuleTimer::PreUpdate()
 
 update_status ModuleTimer::Update()
 {
-	float atmTime = SDL_GetTicks();
-	deltaTime = (atmTime - previousTime) / 1000;
-	previousTime = atmTime;
+	miliseconds = float(Clock::Time() - previousTime);
+
+	deltaTime = miliseconds / 1000.0f;
+	if (deltaTime < LOW) {
+		deltaTime = LOW;
+	}
+	else if (deltaTime > HIGH) {
+		deltaTime = HIGH;
+	}
+
+	previousTime = float(Clock::Time());
 
 	return update_status::UPDATE_CONTINUE;
 }

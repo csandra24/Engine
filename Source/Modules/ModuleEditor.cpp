@@ -4,6 +4,7 @@
 #include "ModuleEditor.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
+#include "ModuleTimer.h"
 
 #include "../Panel/PanelConsole.h"
 #include "../Panel/PanelAbout.h"
@@ -73,6 +74,13 @@ update_status ModuleEditor::PreUpdate()
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
 
+	if (maxFPS.size() >= 100) {
+		maxFPS.erase(maxFPS.begin(), maxFPS.begin() + 1);
+		msFPS.erase(msFPS.begin(), msFPS.begin() + 1);
+	}
+	maxFPS.emplace_back(ImGui::GetIO().Framerate);
+	msFPS.emplace_back(App->timer->GetMiliseconds());
+
 	return UPDATE_CONTINUE;
 }
 
@@ -121,6 +129,8 @@ bool ModuleEditor::CleanUp()
 }
 
 void ModuleEditor::MainMenu() {
+
+	
 	// Main Menu
 	if (ImGui::BeginMainMenuBar()) {
 
@@ -169,7 +179,26 @@ void ModuleEditor::StyleImgui()
 	ImGui::GetStyle().WindowBorderSize = 0.0f;
 
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f); 
+	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f); //Menu color
+
+	style.Colors[ImGuiCol_Button] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
+
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(1.0f, 0.0f, 0.40f, 1.0f);
+
+	style.Colors[ImGuiCol_Header] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(1.0f, 0.0f, 0.40f, 1.0f);
+	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.70f, 0.0f, 0.40f, 1.0f);
+
+	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.3f, 0.3f, 0.3f, 0.2f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(1.0f, 0.0f, 0.40f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(1.0f, 0.0f, 0.40f, 0.5f);
+
+	
+
 	
 }
 

@@ -28,10 +28,11 @@ PanelConfiguration::~PanelConfiguration()
 
 void PanelConfiguration::Draw()
 {
+
 	if (App->Editor->configurationEnabled) {
 
 		ImGui::SetNextWindowSize(ImVec2(300, 550), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(0, 18), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(0, 20), ImGuiCond_Once);
 
 		if (ImGui::Begin("Configuration"))
 		{
@@ -39,19 +40,19 @@ void PanelConfiguration::Draw()
 			{
                 ImGui::Text(TITLE);
 
-                ImGui::SliderInt("Max FPS", &App->max_fps, 1, 240);
-                ImGui::Checkbox("Limit framerate", &App->limit_framerate);
+                std::vector<float> fpsLog = App->Editor->GetFps();
+                std::vector<float> msLog = App->Editor->GetMs();
+
+                char title[25];
+                sprintf_s(title, 25, "Framerate %.1f", fpsLog[fpsLog.size() - 1]);
+                ImGui::PlotHistogram("##framerate", &fpsLog[0], 100, 0, title, 0.0f, 200.0f, ImVec2(310.0f, 100.0f));
+                sprintf_s(title, 25, "Miliseconds %.1f", msLog[msLog.size() - 1]);
+                ImGui::PlotHistogram("##framerate", &msLog[0], 100, 0, title, 0.0f, 200.0f, ImVec2(310.0f, 100.0f));
+
                 if (ImGui::Checkbox("VSync", &App->vsync))
                 {
                     App->renderer->SetVSync(App->vsync);
                 }
-
-                // FPS Graph
-                char title[25];
-                sprintf_s(title, 25, "Framerate %.1f", fpsLog[fpsLogIndex]);
-                ImGui::PlotHistogram("##framerate", &fpsLog[0], FPSLOGSIZE, fpsLogIndex, title, 0.0f, 100.0f, ImVec2(310, 100));
-                sprintf_s(title, 25, "Milliseconds %0.1f", msLog[fpsLogIndex]);
-                ImGui::PlotHistogram("##milliseconds", &msLog[0], FPSLOGSIZE, fpsLogIndex, title, 0.0f, 40.0f, ImVec2(310, 100));
 			}
             
             if (ImGui::CollapsingHeader("Window"))
@@ -233,3 +234,4 @@ void PanelConfiguration::Draw()
 	}
 
 }
+

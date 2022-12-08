@@ -1,0 +1,1 @@
+C:\Users\csand\Documents\AMaster\Engine\Engine\Source\lib\DirectXTex\DirectXTex\Bin\Desktop_2019_Win10\x64\Release\DirectXTex.lib

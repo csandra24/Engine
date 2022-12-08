@@ -26,15 +26,14 @@ void PanelAbout::Draw()
 {
 	if (App->Editor->aboutEnabled) {
 		ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiCond_Once);
-		ImGui::SetNextWindowPos(ImVec2(0, 18), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(0, 20), ImGuiCond_Once);
 
 		if (ImGui::Begin("About"))
 		{
 			ImGui::TextColored(pink, TITLE);
 			ImGui::Text("");
-
-			ImGui::Text("Description:");
-			ImGui::Text("This engine is the result of a lot of effort and dedication for the master in ADVANCED PROGRAMMING FOR AAA VIDEO GAMES.");
+			ImGui::Text("This engine is the result of a lot of effort");
+			ImGui::Text("and dedication for the master in ADVANCED PROGRAMMING FOR AAA VIDEO GAMES.");
 			ImGui::Text("");
 
 			ImGui::TextColored(pink, "Developed by Sandra Campana");

@@ -2,7 +2,7 @@
 #ifndef __MESH_H__
 #define __MESH_H__
 
-#include <assimp/mesh.h>
+#include "../lib/assimp/include/assimp/mesh.h"
 #include "../lib/glew-2.1.0/include/GL/glew.h"
 
 #include <vector>

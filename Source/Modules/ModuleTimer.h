@@ -16,11 +16,14 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	float GetDeltaTime() { return deltaTime; }
+	float GetMiliseconds() const { return miliseconds; }
+
 	
 private:
 
 	float previousTime = 0.0f;
 	float deltaTime = 0.0f;
+	float miliseconds;
 
 };
 

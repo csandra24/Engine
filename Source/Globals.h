@@ -35,6 +35,8 @@ enum class KeyState
 #define MAX_BUF_SIZE 4096
 #define DEGTORAD 0.01745329251f
 #define RADTODEG 1.0f / DEGTORAD
+#define LOW 0.0167f         
+#define HIGH 0.1f   
 
 // Configuration -----------
 #define SCREEN_WIDTH 1200
