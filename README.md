@@ -1,31 +1,37 @@
-# Engine
-- Short description of the engine and link to the github.com page of the project
-- Llist of team members and github accounts
-- How to use the engine, detailing the controls and any specific action
-- Additional funcionality in he engine outside of the assignment requirements
-- Additional comments for the teachers to understand some part of the engine
+# Super Effort Engine
 
+This engine is the result of a lot of effort and dedication for the master in ADVANCED PROGRAMMING FOR AAA VIDEO GAMES.
 
+As a person who does not come from a technical background, it has been a **CHALLENGE**, that's why I decided to name the Engine the **"Super Effort Engine"**, maybe is not perfect but I am very happy with the final result and despite the silly mistakes I had a great time creating it. 
 
+# Installation
 
+- Download the latest release
+- Unzip the file
+- Open SuperEffortEngine.exe
 
+# Controls
+- Q: Move Up
+- E: Move Down
+- W: Move Forward
+- S: Move Backwards
+- A: Left
+- D: Right
+- F: Initial Position
+- Shift: Multiply the speed. 
+- ←↓↑→: Rotate the camera. 
+- Move the camera with the mouse. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Features
+- Camera movement.
+- Drag and drop textures and models.
+- ImGui UI | stylized
+- System information(Hardware, Software).
+- Opengl options menu.
+- Close and open menus from editor.
+- Inspector information.
+- Windows docking.
+- Timer.
 
 # License
 
@@ -50,3 +56,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+[GitHub Sandra Campaña](https://github.com/csandra24/HauntedHouse_Zork)
